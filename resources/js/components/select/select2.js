@@ -1,7 +1,9 @@
 import "./district-select";
 
 // select-basic
-$(".select-basic").select2({
-    tags: true,
-    width: "100%",
-});
+try {
+    $(".select-basic").select2({
+        tags: true,
+        width: "100%",
+    });
+} catch (error) {}

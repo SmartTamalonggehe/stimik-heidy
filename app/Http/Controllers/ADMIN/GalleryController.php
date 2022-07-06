@@ -2,11 +2,41 @@
 
 namespace App\Http\Controllers\ADMIN;
 
-use App\Http\Controllers\Controller;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class GalleryController extends Controller
 {
+    // validation
+    protected function spartaValidation($request, $id = "")
+    {
+        $required = "";
+        if ($id == "") {
+            $required = "required";
+        }
+        $rules = [
+            'image' => $required . '|mimes:jpeg,jpg,png,gif|max:2048',
+        ];
+
+        $messages = [
+            'image.required' => 'Gambar harus diisi.',
+            'image.mimes' => 'Format gambar harus jpg, png, gif.',
+            'image.max' => 'Ukuran gambar maksimal 2MB.',
+        ];
+        $validator = Validator::make($request, $rules, $messages);
+
+        if ($validator->fails()) {
+            $pesan = [
+                'judul' => 'Gagal',
+                'type' => 'error',
+                'pesan' => $validator->errors()->all(),
+            ];
+            return response()->json($pesan);
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +44,8 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        //
+        $data = Gallery::latest()->get();
+        return response()->json($data);
     }
 
     /**
@@ -35,7 +66,27 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data_req = $request->all();
+        $validate = $this->spartaValidation($data_req);
+        if ($validate) {
+            return $validate;
+        }
+        $image = $data_req['image'];
+        // save image to folder galery
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        // storage file image
+        Storage::putFileAs('/public/galery', $image, $imageName);
+        // get APP_URL from .env
+        $url = env('APP_URL');
+
+        $data_req['image'] = "$url/storage/galery/$imageName";
+        Gallery::create($data_req);
+        $pesan = [
+            'judul' => 'Berhasil',
+            'type' => 'success',
+            'pesan' => 'Galery berhasil ditambahkan.',
+        ];
+        return response()->json($pesan);
     }
 
     /**
@@ -57,7 +108,8 @@ class GalleryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Gallery::findOrFail($id);
+        return response()->json($data);
     }
 
     /**
@@ -69,7 +121,40 @@ class GalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data_req = $request->all();
+        // return $data_req;
+        $validate = $this->spartaValidation($data_req, $id);
+        if ($validate) {
+            return $validate;
+        }
+        // find data by id
+        $find_data = Gallery::find($id);
+        $data_image = $find_data->image;
+
+        // save image if exist
+        if ($request->hasFile('image')) {
+            //    delete image
+            $img = str_replace(env('APP_URL') . '/storage', "", $data_image);
+            Storage::delete('public/' . $img);
+
+            //   save image
+            $image = $data_req['image'];
+            // save image to folder galery
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            // storage file image
+            Storage::putFileAs('/public/galery', $image, $imageName);
+            // get APP_URL from .env
+            $url = env('APP_URL');
+
+            $data_req['image'] = "$url/storage/galery/$imageName";
+        }
+        $find_data->update($data_req);
+        $pesan = [
+            'judul' => 'Berhasil',
+            'type' => 'success',
+            'pesan' => 'Galery berhasil diperbaharui.',
+        ];
+        return response()->json($pesan);
     }
 
     /**
@@ -80,6 +165,18 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Gallery::findOrFail($id);
+        // delete file image
+        $img = $data->image;
+        $img = str_replace(env('APP_URL') . '/storage', "", $img);
+        Storage::delete('public/' . $img);
+        // delete data
+        $data->delete();
+        $pesan = [
+            'judul' => 'Berhasil',
+            'type' => 'success',
+            'pesan' => 'Galery berhasil dihapus.',
+        ];
+        return response()->json($pesan);
     }
 }

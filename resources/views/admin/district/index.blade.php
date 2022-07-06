@@ -19,7 +19,7 @@ $title = 'Kabupaten';
         <div class="card">
             <div class="card-body">
                 <p>Silahkan menambah, merubah dan menghapus data {{ $title }}</p>
-                <div id="wrapper"></div>
+                <div id="{{ $folder }}"></div>
             </div>
         </div>
         @include("admin.$folder.form")

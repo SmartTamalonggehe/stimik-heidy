@@ -41,5 +41,5 @@ if (route == "district") {
                     `,
                 ]),
         },
-    }).render(document.getElementById("wrapper"));
+    }).render(document.getElementById("district"));
 }

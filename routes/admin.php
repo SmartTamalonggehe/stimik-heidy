@@ -6,10 +6,6 @@ Route::prefix('admin')->group(function () {
     Route::get('dashboard', function () {
         return view('admin.dashboard.index');
     })->name('admin.dashboard');
-    // route fasilitas
-    Route::get('fasilitas', function () {
-        return view('admin.fasilitas.index');
-    })->name('admin.fasilitas');
     // district
     Route::get('district', function () {
         return view('admin.district.index');
@@ -18,4 +14,8 @@ Route::prefix('admin')->group(function () {
     Route::get('sub-district', function () {
         return view('admin.sub-district.index');
     })->name('admin.sub-district');
+    // gallery
+    Route::get('gallery', function () {
+        return view('admin.gallery.index');
+    })->name('admin.gallery');
 });

@@ -33,8 +33,8 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('admin.fasilitas') }}">
-                            <i data-feather="home"></i><span>Fasilitas</span>
+                        <a class="nav-link" href="{{ route('admin.gallery') }}">
+                            <i data-feather="home"></i><span>Galeri</span>
                         </a>
                     </li>
                 </ul>

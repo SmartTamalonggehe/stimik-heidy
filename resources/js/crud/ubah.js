@@ -53,6 +53,23 @@ const formData = (data) => {
         $("#district-id").val(data.district_id).trigger("change");
         document.getElementById("name").value = data.name;
     }
+    if (route == "gallery") {
+        document.getElementById("id-form").value = data.id;
+        document.getElementById("description").value = data.description;
+        removeImages();
+        // get elemnt id container_foto_lama
+        const container_foto_lama = document.getElementById(
+            "container_foto_lama"
+        );
+        // create div .foto_lama
+        const foto_lama = document.createElement("div");
+        foto_lama.classList.add("foto_lama");
+        // add foto_lama to container_foto_lama
+        container_foto_lama.appendChild(foto_lama);
+        $(".foto_lama").html(
+            `<h6 class="mt-3">Gambar Lama</h6> <img src="${data.image}" width="100%" height="150px">`
+        );
+    }
     if (route == "nilai") {
         document.getElementById("id-form").value = data.id;
         $("#student-id").val(data.student_id).trigger("change");

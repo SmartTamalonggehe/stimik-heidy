@@ -4,11 +4,24 @@ if (route == "gallery") {
     my_grid = new Grid({
         search: {
             enabled: true,
+            selector: "#search",
+        },
+        language: {
+            search: {
+                placeholder: "🔍 ketik kata kunci...",
+            },
+            pagination: {
+                previous: "Sebelumnya",
+                next: "Berikutnya",
+                showing: "Menampilkan",
+                to: "sampai",
+                of: "dari",
+                results: "Data",
+            },
         },
         sort: true,
         columns: [
             "No",
-            "Judul",
             {
                 name: "Gambar",
                 formatter: (cell) => html(`${cell}`),
@@ -25,7 +38,6 @@ if (route == "gallery") {
             then: (data) =>
                 data.map((card, index) => [
                     index + 1,
-                    card.title,
                     ` <a href="${card.image}" data-lightbox="gambar" data-title="${card.title}">
                             <img src="${card.image}" class="img-thumbnail" alt="...">
                         </a>`,

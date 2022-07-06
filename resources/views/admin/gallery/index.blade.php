@@ -1,8 +1,8 @@
 @extends('admin.layouts.default')
 
 @php
-$folder = 'sub-district';
-$title = 'Kecamatan';
+$folder = 'gallery';
+$title = 'Galeri';
 @endphp
 
 @section('title', $title)
@@ -28,5 +28,4 @@ $title = 'Kecamatan';
 
 @section('scripts')
     @vite('resources/js/my-crud.js')
-    <script src="{{ asset('assets/js/select2.full.js') }}"></script>
 @endsection

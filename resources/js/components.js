@@ -8,3 +8,4 @@ import "./components/select/select2";
 // table
 import "./components/tables/district";
 import "./components/tables/sub-district";
+import "./components/tables/galery";
