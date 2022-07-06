@@ -1,6 +1,7 @@
 import { Grid, html } from "gridjs";
-if (route == "district") {
-    // gridjs
+const facility_table = document.querySelector("#facility-table");
+
+if (facility_table) {
     my_grid = new Grid({
         search: {
             enabled: true,
@@ -18,15 +19,12 @@ if (route == "district") {
                 of: "dari",
                 results: "Data",
             },
-            // no records found
-            empty: {
-                message: "Tidak ada data yang ditemukan",
-            },
         },
         sort: true,
         columns: [
             "No",
-            "Nama Kabupaten",
+            "Fasilitas",
+            "Jumlah",
             {
                 name: "Aksi",
                 formatter: (cell) => html(`${cell}`),
@@ -34,16 +32,17 @@ if (route == "district") {
         ],
         pagination: true,
         server: {
-            url: `/crud/${route}`,
+            url: `/crud/facility`,
             then: (data) =>
                 data.map((card, index) => [
                     index + 1,
                     card.name,
+                    card.amount,
                     `
                     <button class="btn btn-outline-warning btn-sm btn-ubah" data-id="${card.id}">Edit</button>
                     <button class="btn btn-outline-danger btn-sm my-2 btn-hapus" data-id="${card.id}">Hapus</button>
                     `,
                 ]),
         },
-    }).render(document.getElementById("district"));
+    }).render(facility_table);
 }

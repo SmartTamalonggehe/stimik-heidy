@@ -1,12 +1,13 @@
 @extends('admin.layouts.default')
 
 @php
-$folder = 'fasilitas';
+$folder = 'facility';
+$title = 'Fasilitas';
 @endphp
 
-@section('title', $folder)
+@section('title', $title)
 
-@section('judul', $folder)
+@section('judul', $title)
 
 @section('btn-tambah')
     <button class="btn btn-primary" id="btn-tambah">Tambah Data</button>
@@ -17,8 +18,8 @@ $folder = 'fasilitas';
     <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
-                <p>Silahkan menambah, merubah dan menghapus data {{ $folder }}</p>
-                <div id="wrapper"></div>
+                <p>Silahkan menambah, merubah dan menghapus data {{ $title }}</p>
+                <div id="{{ $folder }}-table"></div>
             </div>
         </div>
         @include("admin.$folder.form")

@@ -2,11 +2,38 @@
 
 namespace App\Http\Controllers\ADMIN;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Facility;
+use Illuminate\Support\Facades\Validator;
 
 class FacilityController extends Controller
 {
+    // validation
+    protected function spartaValidation($request, $id = "")
+    {
+        $required = "";
+        if ($id == "") {
+            $required = "required";
+        }
+        $rules = [
+            'name' => 'required',
+        ];
+
+        $messages = [
+            'name.required' => 'Nama Fasilitas harus diisi.',
+        ];
+        $validator = Validator::make($request, $rules, $messages);
+
+        if ($validator->fails()) {
+            $pesan = [
+                'judul' => 'Gagal',
+                'type' => 'error',
+                'pesan' => $validator->errors()->all(),
+            ];
+            return response()->json($pesan);
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +41,8 @@ class FacilityController extends Controller
      */
     public function index()
     {
-        //
+        $data = Facility::orderBy('name', 'ASC')->get();
+        return response()->json($data);
     }
 
     /**
@@ -35,7 +63,15 @@ class FacilityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data_req = $request->all();
+        $this->spartaValidation($data_req);
+        Facility::create($data_req);
+        $pesan = [
+            'judul' => 'Berhasil',
+            'type' => 'success',
+            'pesan' => 'Data berhasil ditambahkan.',
+        ];
+        return response()->json($pesan);
     }
 
     /**
@@ -57,7 +93,8 @@ class FacilityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Facility::findOrFail($id);
+        return response()->json($data);
     }
 
     /**
@@ -69,7 +106,22 @@ class FacilityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data_req = $request->all();
+        // return $data_req;
+        $validate = $this->spartaValidation($data_req, $id);
+        if ($validate) {
+            return $validate;
+        }
+        // find data by id
+        $find_data = Facility::find($id);
+
+        $find_data->update($data_req);
+        $pesan = [
+            'judul' => 'Berhasil',
+            'type' => 'success',
+            'pesan' => 'Data berhasil diperbaharui.',
+        ];
+        return response()->json($pesan);
     }
 
     /**
@@ -80,6 +132,14 @@ class FacilityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Facility::findOrFail($id);
+        // delete data
+        $data->delete();
+        $pesan = [
+            'judul' => 'Berhasil',
+            'type' => 'success',
+            'pesan' => 'Data berhasil dihapus.',
+        ];
+        return response()->json($pesan);
     }
 }

@@ -9,3 +9,4 @@ import "./components/select/select2";
 import "./components/tables/district";
 import "./components/tables/sub-district";
 import "./components/tables/galery";
+import "./components/tables/facility";

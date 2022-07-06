@@ -64,7 +64,11 @@ class DistrictController extends Controller
     public function store(Request $request)
     {
         $data_req = $request->all();
-        $this->spartaValidation($data_req);
+        // return $data_req;
+        $validate = $this->spartaValidation($data_req);
+        if ($validate) {
+            return $validate;
+        }
         District::create($data_req);
         $pesan = [
             'judul' => 'Berhasil',

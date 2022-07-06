@@ -18,4 +18,8 @@ Route::prefix('admin')->group(function () {
     Route::get('gallery', function () {
         return view('admin.gallery.index');
     })->name('admin.gallery');
+    // facility
+    Route::get('facility', function () {
+        return view('admin.facility.index');
+    })->name('admin.facility');
 });

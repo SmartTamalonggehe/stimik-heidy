@@ -70,12 +70,9 @@ const formData = (data) => {
             `<h6 class="mt-3">Gambar Lama</h6> <img src="${data.image}" width="100%" height="150px">`
         );
     }
-    if (route == "nilai") {
+    if (route == "facility") {
         document.getElementById("id-form").value = data.id;
-        $("#student-id").val(data.student_id).trigger("change");
-        document.getElementById("UTS").value = data.UTS;
-        document.getElementById("UAS").value = data.UAS;
-        document.getElementById("total").value = data.total;
-        document.getElementById("grade").value = data.grade;
+        document.getElementById("name").value = data.name;
+        document.getElementById("amount").value = data.amount;
     }
 };
