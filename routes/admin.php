@@ -14,4 +14,8 @@ Route::prefix('admin')->group(function () {
     Route::get('district', function () {
         return view('admin.district.index');
     })->name('admin.district');
+    // sub-district
+    Route::get('sub-district', function () {
+        return view('admin.sub-district.index');
+    })->name('admin.sub-district');
 });

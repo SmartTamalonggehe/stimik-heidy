@@ -28,9 +28,8 @@
                         <a class="nav-link menu-title active" href="javascript:void(0)"><i
                                 data-feather="git-pull-request"></i><span>Tempat</span></a>
                         <ul class="nav-submenu menu-content">
-
                             <li><a href="{{ route('admin.district') }}">Kabupaten</a></li>
-                            <li><a href="ckeditor.html">Distrik</a></li>
+                            <li><a href="{{ route('admin.sub-district') }}">Distrik</a></li>
                         </ul>
                     </li>
                     <li>
