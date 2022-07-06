@@ -1,0 +1,29 @@
+.my-absolute {
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+}
+
+.gridjs-search {
+    width: 100%;
+    z-index: 2;
+}
+/* type search */
+input.gridjs-input {
+    width: 100%;
+    z-index: 2;
+}
+
+/* my-absolute hidde @media */
+@media (max-width: 600px) {
+    .my-absolute {
+        width: 60%;
+    }
+}
+
+@media (max-width: 400px) {
+    .my-absolute {
+        /* hide */
+        display: none;
+    }
+}
