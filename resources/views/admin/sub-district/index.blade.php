@@ -9,10 +9,6 @@ $title = 'Kecamatan';
 
 @section('judul', $title)
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('assets/js/tom-select/dist/css/tom-select.bootstrap5.css') }}">
-@endsection
-
 @section('btn-tambah')
     <button class="btn btn-primary" id="btn-tambah">Tambah Data</button>
 @endsection
@@ -31,6 +27,6 @@ $title = 'Kecamatan';
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('assets/js/tom-select/dist/js/tom-select.complete.js') }}"></script>
     @vite('resources/js/my-crud.js')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endsection

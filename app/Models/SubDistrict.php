@@ -9,4 +9,9 @@ class SubDistrict extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function district()
+    {
+        return $this->belongsTo(District::class);
+    }
 }

@@ -1,5 +1,4 @@
 import { getDataDistrict } from "../../getData";
-// import "./select2";
 
 const district_id = document.getElementById("district-id");
 
@@ -12,10 +11,6 @@ const selectDistrict = async () => {
                 <option value="${district.id}">${district.name}</option>
             `;
         });
-        new TomSelect("#district-id", config);
     }
 };
-
 selectDistrict();
-
-var config = {};

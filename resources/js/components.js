@@ -3,7 +3,8 @@ import "./components/side-bar";
 import "./components/images/upload";
 
 // select
-import "./components/select/district-select";
+import "./components/select/select2";
 
 // table
 import "./components/tables/district";
+import "./components/tables/sub-district";

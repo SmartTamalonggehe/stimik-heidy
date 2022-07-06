@@ -2,3 +2,5 @@
 @import "gridjs/dist/theme/mermaid.css";
 @import "lightbox2/dist/css/lightbox.css";
 @import "toastr";
+/* select2 */
+@import "select2/dist/css/select2.css";

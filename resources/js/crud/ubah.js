@@ -48,6 +48,11 @@ const formData = (data) => {
         document.getElementById("id-form").value = data.id;
         document.getElementById("name").value = data.name;
     }
+    if (route == "sub-district") {
+        document.getElementById("id-form").value = data.id;
+        $("#district-id").val(data.district_id).trigger("change");
+        document.getElementById("name").value = data.name;
+    }
     if (route == "nilai") {
         document.getElementById("id-form").value = data.id;
         $("#student-id").val(data.student_id).trigger("change");
