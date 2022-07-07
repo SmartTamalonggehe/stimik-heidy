@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('admin.layouts.head')
+
+<head>
+    @include('admin.layouts.head')
+</head>
 
 <body>
     <!-- Loader starts-->

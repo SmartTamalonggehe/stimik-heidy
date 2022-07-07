@@ -15,8 +15,8 @@
                     <div class="mode"><i class="fa fa-moon-o"></i></div>
                 </li>
                 <li class="onhover-dropdown p-0">
-                    <button class="btn btn-primary-light" type="button"><a href="login_two.html"><i
-                                data-feather="log-out"></i>Log out</a></button>
+                    <button id="btn-logout" class="btn btn-primary-light" type="button"><i
+                            data-feather="log-out"></i>Log out</button>
                 </li>
             </ul>
         </div>

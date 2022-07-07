@@ -1,6 +1,6 @@
 import "./components/side-bar";
-// require("./components/images/upload");
 import "./components/images/upload";
+import "./components/logout";
 
 // select
 import "./components/select/select2";

@@ -1,6 +1,7 @@
 import { Grid, html } from "gridjs";
-if (route == "gallery") {
-    // gridjs
+const gallery_table = document.getElementById("gallery-table");
+
+if (gallery_table) {
     my_grid = new Grid({
         search: {
             enabled: true,
@@ -48,5 +49,5 @@ if (route == "gallery") {
                     `,
                 ]),
         },
-    }).render(document.getElementById("wrapper"));
+    }).render(gallery_table);
 }

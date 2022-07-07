@@ -1,6 +1,6 @@
 import { Grid, html } from "gridjs";
-if (route == "district") {
-    // gridjs
+const district_table = document.getElementById("district-table");
+if (district_table) {
     my_grid = new Grid({
         search: {
             enabled: true,
@@ -45,5 +45,5 @@ if (route == "district") {
                     `,
                 ]),
         },
-    }).render(document.getElementById("district"));
+    }).render(district_table);
 }
