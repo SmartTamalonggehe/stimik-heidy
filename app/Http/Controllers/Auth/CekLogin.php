@@ -17,5 +17,9 @@ class CekLogin extends Controller
         elseif (auth()->user()->roles->first()->name == 'KETUA') {
             return redirect()->route('ketua.dashboard');
         }
+        // if role is ketua, redirect to dashboard
+        elseif (auth()->user()->roles->first()->name == 'PENYEWA') {
+            return redirect()->route('penyewa.dashboard');
+        }
     }
 }

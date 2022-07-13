@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <title>Verifikasi Email</title>
     @include('admin.layouts.head')
 </head>
 

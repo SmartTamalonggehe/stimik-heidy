@@ -1,6 +1,7 @@
 import "./components/side-bar";
 import "./components/images/upload";
 import "./components/logout";
+import "./components/toogle-password";
 
 // select
 import "./components/select/select2";
