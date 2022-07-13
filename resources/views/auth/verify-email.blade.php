@@ -20,15 +20,17 @@
             <div class="row">
                 <div class="col-12">
                     <div class="login-card">
-                        <form class="theme-form login-form" method="POST">
+                        <form class="theme-form login-form" method="POST" action="{{ route('verifikasi-email') }}">
                             @csrf
                             <div class="d-flex">
                                 <div class="d-flex flex-column">
-                                    <h4>Login</h4>
-                                    <h6>Selamat datang, silahkan melakukan login.</h6>
+                                    <h4>Verifikasi Email</h4>
+
                                 </div>
                                 <div class="mode ms-auto align-self-center"><i class="fa fa-moon-o"></i></div>
                             </div>
+                            <h6>Silahkan cek email dan lakukan verifikasi untuk akses selanjutnya. Cek pada email spam.
+                                Bila email belum diterima silahkan klik kirim email verifikasi dibawah.</h6>
                             {{-- error --}}
                             @if ($errors->any())
                                 <div class="alert alert-danger">
@@ -39,52 +41,27 @@
                                     </ul>
                                 </div>
                             @endif
-                            <div class="form-group">
-                                <div class="form-group">
-                                    <label id="email">Email</label>
-                                    <div class="input-group"><span class="input-group-text"><i
-                                                class="icon-email"></i></span>
-                                        <input class="form-control" type="email" name="email" id="email"
-                                            required="" placeholder="email@gmail.com">
-                                    </div>
+
+                            {{-- sesion --}}
+                            @if (session()->has('success'))
+                                <div class="alert alert-success">
+                                    {{ session()->get('success') }}
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label id="email">Password</label>
-                                <div class="input-group"><span class="input-group-text"><i class="icon-lock"></i></span>
-                                    <input class="form-control" type="password" name="password" id="password"
-                                        required="" placeholder="*********">
-                                    <div class="toogle-password">
-                                        <i data-feather="eye-off" width="15" height="24"></i>
-                                    </div>
+                            @endif
+                            {{-- sesion error --}}
+                            @if (session()->has('error'))
+                                <div class="alert alert-danger">
+                                    {{ session()->get('error') }}
                                 </div>
+                            @endif
+
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <button class="btn btn-primary btn-block" type="submit">Kirim Email
+                                        Verifikasi</button>
+                                </div>
+                                <p><a class="ms-2" href="javascript:void(0)" id="btn-logout">Logout</a></p>
                             </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <input id="checkbox1" type="checkbox" name="remember">
-                                    <label for="checkbox1">Ingat saya</label>
-                                </div><a class="link" href="forget-password.html">Lupa password?</a>
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-primary btn-block" type="submit">Login</button>
-                            </div>
-                            {{-- <div class="login-social-title">
-                                <h5>Sign in with</h5>
-                            </div>
-                            <div class="form-group">
-                                <ul class="login-social">
-                                    <li><a href="https://www.linkedin.com/login" target="_blank"><i
-                                                data-feather="linkedin"></i></a></li>
-                                    <li><a href="https://www.linkedin.com/login" target="_blank"><i
-                                                data-feather="twitter"></i></a></li>
-                                    <li><a href="https://www.linkedin.com/login" target="_blank"><i
-                                                data-feather="facebook"></i></a></li>
-                                    <li><a href="https://www.instagram.com/login" target="_blank"><i
-                                                data-feather="instagram"> </i></a></li>
-                                </ul>
-                            </div> --}}
-                            <hr>
-                            <p>Tidak punya akun?<a class="ms-2" href="{{ route('register') }}">Buat akun</a></p>
                         </form>
                     </div>
                 </div>

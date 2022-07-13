@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Email\NotifyEmailController;
+use App\Http\Controllers\Email\VerifikasiEmailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('login');
 });
+
+Route::get('email', [NotifyEmailController::class, 'index']);
+Route::post('verifikasi-email', [VerifikasiEmailController::class, 'index'])->name('verifikasi-email');
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';

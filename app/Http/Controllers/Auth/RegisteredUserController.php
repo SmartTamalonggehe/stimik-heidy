@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Registered;
+use App\Models\VerifyUser;
+use App\Mail\VerifikasiMail;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Auth\Events\Registered;
+use App\Providers\RouteServiceProvider;
 
 class RegisteredUserController extends Controller
 {
@@ -48,9 +51,14 @@ class RegisteredUserController extends Controller
 
         $user->assignRole('PENYEWA');
 
-        event(new Registered($user));
+        $verify = VerifyUser::create([
+            'user_id' => $user->id,
+            'token' => sha1(time()),
+        ]);
 
-        // Auth::login($user);
+        Mail::to($user->email)->send(new VerifikasiMail($verify->token));
+
+        Auth::login($user);
 
         return redirect()->route('register')->with('success', 'Selamat! Anda telah terdaftar. Silahkan cek email anda untuk melakukan verifikasi.');
     }
