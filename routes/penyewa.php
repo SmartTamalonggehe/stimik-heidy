@@ -11,4 +11,8 @@ Route::prefix('penyewa')->middleware('auth', 'role:PENYEWA', 'verified')->group(
     Route::get('dashboard', function () {
         return view('penyewa.dashboard.index');
     })->name('penyewa.dashboard');
+    // schedule
+    Route::get('schedule', function () {
+        return view('penyewa.schedule.index');
+    })->name('penyewa.schedule');
 });

@@ -45,17 +45,12 @@
                                 </div>
                             @endif
                             <div class="form-group">
-                                <label for="first_name">Nama Lengkap</label>
+                                <label for="name">User Name</label>
                                 <div class="small-group">
                                     <div class="input-group"><span class="input-group-text"><i
                                                 class="icon-user"></i></span>
-                                        <input class="form-control" type="text" name="first_name" id="first_name"
-                                            required="" placeholder="Nama depan">
-                                    </div>
-                                    <div class="input-group"><span class="input-group-text"><i
-                                                class="icon-user"></i></span>
-                                        <input class="form-control" type="text" name="last_name" id="last_name"
-                                            placeholder="Nama Belakang">
+                                        <input class="form-control" type="text" name="name" id="name"
+                                            required="" placeholder="User Name">
                                     </div>
                                 </div>
                             </div>

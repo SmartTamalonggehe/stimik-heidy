@@ -22,6 +22,11 @@
                             <i data-feather="home"></i><span>Dashboard</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('penyewa.schedule') }}">
+                            <i data-feather="home"></i><span>Sewa</span>
+                        </a>
+                    </li>
                     {{-- <li class="dropdown collapsed">
                         <a class="nav-link menu-title active" href="javascript:void(0)"><i
                                 data-feather="git-pull-request"></i><span>Tempat</span></a>

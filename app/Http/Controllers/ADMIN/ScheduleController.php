@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ADMIN;
 
 use App\Http\Controllers\Controller;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -14,7 +15,8 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        //
+        $data = Schedule::latest()->with('tenant')->get();
+        return response()->json($data);
     }
 
     /**
