@@ -30,4 +30,35 @@ const getDataDistrict = () => {
         });
 };
 
-export { getDataDistrict, dataRoute };
+const getDataSubDistrict = () => {
+    return axios({
+        method: "GET",
+        url: `/crud/sub-district`,
+    })
+        .then((res) => {
+            return res.data;
+        })
+        .catch((err) => {
+            alert(`Terjadi kesalahan pada server ${err}`);
+        });
+};
+
+const getShowDataSubDistrict = (id) => {
+    return axios({
+        method: "GET",
+        url: `/crud/sub-district/${id}`,
+    })
+        .then((res) => {
+            return res.data;
+        })
+        .catch((err) => {
+            alert(`Terjadi kesalahan pada server ${err}`);
+        });
+};
+
+export {
+    getDataDistrict,
+    dataRoute,
+    getDataSubDistrict,
+    getShowDataSubDistrict,
+};

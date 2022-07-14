@@ -88,7 +88,8 @@ class SubDistrictController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = SubDistrict::where('district_id', $id)->get();
+        return response()->json($data);
     }
 
     /**

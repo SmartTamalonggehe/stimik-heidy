@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\ScheduleAPI;
+use App\Http\Controllers\API\SubDistrictAPI;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('schedule', [ScheduleAPI::class, 'index'])->name('schedule.index');
+// sub district
+Route::get('sub-district', [SubDistrictAPI::class, 'index'])->name('sub-district.index');

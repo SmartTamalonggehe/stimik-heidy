@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('nik');
             $table->string('first_name');
-            $table->string('last_name');
+            $table->string('last_name')->nullable();
             $table->string('gender');
             $table->foreignId('sub_district_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('address');

@@ -2,6 +2,11 @@ import { Grid, html } from "gridjs";
 const gallery_table = document.getElementById("gallery-table");
 
 if (gallery_table) {
+    let url = `/crud/${route}`;
+    if (role === "penyewa") {
+        url = `/api/${route}`;
+    }
+
     my_grid = new Grid({
         search: {
             enabled: true,
@@ -35,7 +40,7 @@ if (gallery_table) {
         ],
         pagination: true,
         server: {
-            url: `/crud/${route}`,
+            url,
             then: (data) =>
                 data.map((card, index) => [
                     index + 1,

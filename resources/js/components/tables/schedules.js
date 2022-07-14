@@ -11,6 +11,10 @@ if (schedule_table) {
               formatter: (cell) => html(`${cell}`),
           })
         : null;
+    let url = `/crud/schedule`;
+    if (role === "penyewa") {
+        url = `/api/schedule`;
+    }
     my_grid = new Grid({
         search: {
             enabled: true,
@@ -37,7 +41,7 @@ if (schedule_table) {
         columns,
         pagination: true,
         server: {
-            url: `/crud/schedule`,
+            url,
             then: (data) =>
                 data.map((item, index) => [
                     index + 1,
