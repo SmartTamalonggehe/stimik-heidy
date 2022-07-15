@@ -9,4 +9,9 @@ class Tenant extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function subDistrict()
+    {
+        return $this->belongsTo(SubDistrict::class, 'sub_district_id');
+    }
 }

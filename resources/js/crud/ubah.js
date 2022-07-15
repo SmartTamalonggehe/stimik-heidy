@@ -1,3 +1,4 @@
+import { selectSubDistrict } from "../components/select/sub-district";
 import { removeImages } from "./tambah";
 import { modal_crud, setSaveMethod } from "./tools";
 
@@ -74,5 +75,34 @@ const formData = (data) => {
         document.getElementById("id-form").value = data.id;
         document.getElementById("name").value = data.name;
         document.getElementById("amount").value = data.amount;
+    }
+    if (route == "tenant") {
+        document.getElementById("id-form").value = data.id;
+        document.getElementById("nik").value = data.nik;
+        document.getElementById("address").value = data.address;
+        document.getElementById("first_name").value = data.first_name;
+        document.getElementById("last_name").value = data.last_name;
+        // gender
+        data.gender == "Laki-laki"
+            ? (document.getElementById("Laki-laki").checked = true)
+            : (document.getElementById("Perempuan").checked = true);
+
+        $("#district-id").val(data.sub_district.district.id).trigger("change");
+        selectSubDistrict(data.sub_district.district.id, data.sub_district.id);
+
+        // document.getElementById("Laki-laki").checked=true;
+        removeImages();
+        // get elemnt id container_foto_lama
+        const container_foto_lama = document.getElementById(
+            "container_foto_lama"
+        );
+        // create div .foto_lama
+        const foto_lama = document.createElement("div");
+        foto_lama.classList.add("foto_lama");
+        // add foto_lama to container_foto_lama
+        container_foto_lama.appendChild(foto_lama);
+        $(".foto_lama").html(
+            `<h6 class="mt-3">Gambar Lama</h6> <img src="${data.ktp_picture}" width="100%" height="150px">`
+        );
     }
 };

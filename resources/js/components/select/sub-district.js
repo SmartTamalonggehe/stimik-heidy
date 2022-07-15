@@ -2,14 +2,16 @@ import { getDataDistrict, getShowDataSubDistrict } from "../../getData";
 
 const sub_district_id = document.getElementById("sub-district-id");
 
-const selectSubDistrict = async (id) => {
+const selectSubDistrict = async (id, selected = "") => {
     if (sub_district_id) {
         const dataSubDistricts = await getShowDataSubDistrict(id);
-        console.log("dataSubDistricts", dataSubDistricts);
         sub_district_id.innerHTML = `<option value="" disabled selected>Pilih Kecamatan</option>`;
         dataSubDistricts.forEach((sub_district) => {
             sub_district_id.innerHTML += `
-                <option value="${sub_district.id}">${sub_district.name}</option>
+                <option value="${sub_district.id}"
+                ${selected === sub_district.id ? "selected" : ""}>
+            ${sub_district.name}
+            </option>
             `;
         });
     }
@@ -34,3 +36,5 @@ const selectDistrict = async () => {
 };
 
 selectDistrict();
+
+export { selectDistrict, selectSubDistrict };

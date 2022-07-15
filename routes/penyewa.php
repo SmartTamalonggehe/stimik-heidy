@@ -17,6 +17,12 @@ Route::prefix('penyewa')->middleware('auth', 'role:PENYEWA', 'verified')->group(
     })->name('penyewa.tenant');
     // schedule
     Route::get('schedule', function () {
-        return view('penyewa.schedule.index');
+        if (auth()->user()->tenant) {
+            if (auth()->user()->tenant->status == 'inactive') {
+                return redirect()->route('penyewa.tenant')->with('alert', 'Data belum disetujui oleh admin.');
+            }
+            return view('penyewa.schedule.index');
+        }
+        return redirect()->route('penyewa.tenant')->with('alert', 'Data belum ada');
     })->name('penyewa.schedule');
 });

@@ -2,17 +2,19 @@ import { toastr, save_method, setSaveMethod, modal_crud } from "./tools";
 
 const btn_tambah = document.getElementById("btn-tambah");
 
-btn_tambah.addEventListener("click", function () {
-    // show modal data-modal-toggle="defaultModal"
-    modal_crud.toggle();
-    // set save_method
-    setSaveMethod("tambah");
-    // set attribut form
-    document.getElementById("judul-form").innerText = "From Tambah Data";
-    document.getElementById("tombol-form").innerText = "Simpan Data";
-    // reset form
-    resetForm();
-});
+if (btn_tambah) {
+    btn_tambah.addEventListener("click", function () {
+        // show modal data-modal-toggle="defaultModal"
+        modal_crud.toggle();
+        // set save_method
+        setSaveMethod("tambah");
+        // set attribut form
+        document.getElementById("judul-form").innerText = "From Tambah Data";
+        document.getElementById("tombol-form").innerText = "Simpan Data";
+        // reset form
+        resetForm();
+    });
+}
 
 document.getElementById("formKu").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -49,6 +51,8 @@ document.getElementById("formKu").addEventListener("submit", function (e) {
             if (response.data.type !== "success") {
                 return;
             }
+            // if role penyewa reload page
+            role === "penyewa" && window.location.reload();
             resetForm();
             my_grid.forceRender();
         })

@@ -56,9 +56,23 @@ const getShowDataSubDistrict = (id) => {
         });
 };
 
+const getShowDataTenant = (id) => {
+    return axios({
+        method: "GET",
+        url: `/crud/tenant/${id}`,
+    })
+        .then((res) => {
+            return res.data;
+        })
+        .catch((err) => {
+            alert(`Terjadi kesalahan pada server ${err}`);
+        });
+};
+
 export {
     getDataDistrict,
     dataRoute,
     getDataSubDistrict,
     getShowDataSubDistrict,
+    getShowDataTenant,
 };

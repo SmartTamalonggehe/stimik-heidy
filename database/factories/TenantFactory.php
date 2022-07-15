@@ -32,9 +32,8 @@ class TenantFactory extends Factory
             'gender' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
             'sub_district_id' => $sub_district->id,
             'address' => $this->faker->address,
-            'ktp_picture' => $this->faker->imageUrl(400, 400,),
-            'image' => $this->faker->imageUrl(400, 400, 'people'),
-            'status' => $this->faker->randomElement(['Aktif', 'Tidak Aktif']),
+            'ktp_picture' => $this->faker->imageUrl(400, 400, 'people'),
+            'status' => $this->faker->randomElement(['active', 'inactive']),
         ];
     }
 }

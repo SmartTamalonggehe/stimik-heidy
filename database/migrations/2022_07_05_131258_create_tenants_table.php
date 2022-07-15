@@ -23,7 +23,6 @@ return new class extends Migration
             $table->foreignId('sub_district_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('address');
             $table->string('ktp_picture');
-            $table->string('image');
             $table->string('status');
             $table->timestamps();
         });

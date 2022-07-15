@@ -20,18 +20,29 @@ $user_tenant = auth()->user()->tenant;
 @section('content')
     <div id="route" style="display: none"><?= $folder ?></div>
     <div class="col-sm-12">
-        <div class="card">
-            <div class="card-body">
-                @if ($user_tenant)
-                    <div>Data Diri</div>
-                @else
+        @if ($user_tenant)
+            <div class="card">
+                {{-- sesion --}}
+                @if (session('alert'))
+                    <div class="alert alert-warning text-dark">
+                        {{ session('alert') }}
+                    </div>
+                @endif
+                <div class="row" id="card-tenant" data-id="{{ $user_tenant->id }}">
+
+                </div>
+            </div>
+        @else
+            <div class="card">
+                <div class="card-body">
+
                     <div>
                         <p>Data diri anda belum terdaftar. Silahkan melakukan pendaftaran dengan mengklik tombol data di
                             atas.</p>
                     </div>
-                @endif
+                </div>
             </div>
-        </div>
+        @endif
         @include("penyewa.$folder.form")
     </div>
 @endsection

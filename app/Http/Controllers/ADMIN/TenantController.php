@@ -18,13 +18,13 @@ class TenantController extends Controller
             $required = "required";
         }
         $rules = [
-            'image' => $required . '|mimes:jpeg,jpg,png,gif|max:2048',
+            'ktp_picture' => $required . '|mimes:jpeg,jpg,png,gif|max:2048',
         ];
 
         $messages = [
-            'image.required' => 'Gambar harus diisi.',
-            'image.mimes' => 'Format gambar harus jpg, png, gif.',
-            'image.max' => 'Ukuran gambar maksimal 2MB.',
+            'ktp_picture.required' => 'Gambar harus diisi.',
+            'ktp_picture.mimes' => 'Format gambar harus jpg, png, gif.',
+            'ktp_picture.max' => 'Ukuran gambar maksimal 2MB.',
         ];
         $validator = Validator::make($request, $rules, $messages);
 
@@ -71,7 +71,7 @@ class TenantController extends Controller
         if ($validate) {
             return $validate;
         }
-        $image = $data_req['image'];
+        $image = $data_req['ktp_picture'];
         // save image to folder tenant
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         // storage file image
@@ -79,7 +79,11 @@ class TenantController extends Controller
         // get APP_URL from .env
         $url = env('APP_URL');
 
-        $data_req['image'] = "$url/storage/tenant/$imageName";
+        $data_req['ktp_picture'] = "$url/storage/tenant/$imageName";
+        // data_req remove district_id
+        unset($data_req['district_id']);
+        // add status in data_req
+        $data_req['status'] = 'inactive';
         Tenant::create($data_req);
         $pesan = [
             'judul' => 'Berhasil',
@@ -97,7 +101,10 @@ class TenantController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Tenant::with(['subDistrict' => function ($sub_distirct) {
+            $sub_distirct->with('district');
+        }])->find($id);
+        return response()->json($data);
     }
 
     /**
@@ -108,7 +115,9 @@ class TenantController extends Controller
      */
     public function edit($id)
     {
-        $data = Tenant::findOrFail($id);
+        $data = Tenant::with(['subDistrict' => function ($sub_distirct) {
+            $sub_distirct->with('district');
+        }])->findOrFail($id);
         return response()->json($data);
     }
 
@@ -129,21 +138,25 @@ class TenantController extends Controller
         }
         // find data by id
         $find_data = Tenant::find($id);
-        $data_image = $find_data->image;
-
-        //    delete image
-        $img = str_replace(env('APP_URL') . '/storage', "", $data_image);
-        Storage::delete('public/' . $img);
-        //   save image
-        $image = $data_req['image'];
-        // save image to folder tenant
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        // storage file image
-        Storage::putFileAs('/public/tenant', $image, $imageName);
+        $data_image = $find_data->ktp_picture;
         // get APP_URL from .env
         $url = env('APP_URL');
-        $data_req['image'] = "$url/storage/tenant/$imageName";
 
+        // save image if exist
+        if ($request->hasFile('image')) {
+            //    delete image
+            $img = str_replace(env('APP_URL') . '/storage', "", $data_image);
+            Storage::delete('public/' . $img);
+            //   save image
+            $image = $data_req['ktp_picture'];
+            // save image to folder tenant
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            // storage file image
+            Storage::putFileAs('/public/tenant', $image, $imageName);
+            $data_req['ktp_picture'] = "$url/storage/tenant/$imageName";
+        }
+        // data_req remove district_id
+        unset($data_req['district_id']);
         $find_data->update($data_req);
         $pesan = [
             'judul' => 'Berhasil',
@@ -163,7 +176,7 @@ class TenantController extends Controller
     {
         $data = Tenant::findOrFail($id);
         // delete file image
-        $img = $data->image;
+        $img = $data->ktp_picture;
         $img = str_replace(env('APP_URL') . '/storage', "", $img);
         Storage::delete('public/' . $img);
         // delete data
