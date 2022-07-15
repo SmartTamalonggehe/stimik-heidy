@@ -25,4 +25,8 @@ Route::prefix('admin')->middleware('auth', 'role:ADMIN')->group(function () {
     Route::get('facility', function () {
         return view('admin.facility.index');
     })->name('admin.facility');
+    // tenant
+    Route::get('tenant', function () {
+        return view('admin.tenant.index');
+    })->name('admin.tenant');
 });

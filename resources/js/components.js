@@ -15,3 +15,4 @@ import "./components/tables/sub-district";
 import "./components/tables/galery";
 import "./components/tables/facility";
 import "./components/tables/schedules";
+import "./components/tables/tenant";

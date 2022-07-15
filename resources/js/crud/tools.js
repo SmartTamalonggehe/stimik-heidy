@@ -7,10 +7,12 @@ const setSaveMethod = (set) => {
     save_method = set;
 };
 
-const modal_crud = new bootstrap.Modal(
-    document.getElementById("modal-crud"),
-    {}
-);
+const form_crud = document.getElementById("modal-crud");
+let modal_crud;
+
+if (form_crud) {
+    modal_crud = new bootstrap.Modal(form_crud, {});
+}
 
 toastr.options = {
     closeButton: true,

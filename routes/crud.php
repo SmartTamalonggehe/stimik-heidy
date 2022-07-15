@@ -8,7 +8,7 @@ use App\Http\Controllers\ADMIN\FacilityController;
 use App\Http\Controllers\ADMIN\ScheduleController;
 use App\Http\Controllers\ADMIN\SubDistrictController;
 
-Route::prefix('crud')->group(function () {
+Route::prefix('crud')->middleware('auth')->group(function () {
     Route::resources([
         'district' => DistrictController::class,
         'sub-district' => SubDistrictController::class,

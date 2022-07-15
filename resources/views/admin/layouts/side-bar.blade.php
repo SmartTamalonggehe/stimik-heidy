@@ -42,6 +42,11 @@
                             <i data-feather="home"></i><span>Fasilitas</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('admin.tenant') }}">
+                            <i data-feather="home"></i><span>Penyewa</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

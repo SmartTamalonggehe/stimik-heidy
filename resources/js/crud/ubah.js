@@ -78,6 +78,7 @@ const formData = (data) => {
     }
     if (route == "tenant") {
         document.getElementById("id-form").value = data.id;
+        document.getElementById("user-id").value = data.user_id;
         document.getElementById("nik").value = data.nik;
         document.getElementById("address").value = data.address;
         document.getElementById("first_name").value = data.first_name;

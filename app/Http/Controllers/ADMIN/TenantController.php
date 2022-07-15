@@ -44,7 +44,9 @@ class TenantController extends Controller
      */
     public function index()
     {
-        $data = Tenant::latest()->get();
+        $data = Tenant::with(['subDistrict' => function ($sub_distirct) {
+            $sub_distirct->with('district');
+        }])->latest()->get();
         return response()->json($data);
     }
 
@@ -53,9 +55,23 @@ class TenantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        // ubah status
+        $data = Tenant::find($request->id);
+        $status = $data->status;
+
+        $status == 'inactive' ? $status = 'active' : $status = 'inactive';
+        // update status
+        $data->status = $status;
+        $data->save();
+
+        $pesan = [
+            'judul' => 'Berhasil',
+            'type' => 'success',
+            'pesan' => 'Status Berhasil Diubah.',
+        ];
+        return response()->json($pesan);
     }
 
     /**

@@ -15,51 +15,53 @@ if (btn_tambah) {
         resetForm();
     });
 }
+const formKu = document.getElementById("formKu");
+if (formKu) {
+    formKu.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        // get data from form
+        // const formData = $(this).serialize();
+        const data = formData;
+        const id_form = document.getElementById("id-form").value;
 
-document.getElementById("formKu").addEventListener("submit", function (e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-    // get data from form
-    // const formData = $(this).serialize();
-    const data = formData;
-    const id_form = document.getElementById("id-form").value;
+        let method;
+        let url;
+        if (save_method === "tambah") {
+            method = "post";
+            url = `/crud/${route}`;
+        } else {
+            method = "post";
+            formData.append("_method", "PUT");
+            url = `/crud/${route}/${id_form}`;
+        }
 
-    let method;
-    let url;
-    if (save_method === "tambah") {
-        method = "post";
-        url = `/crud/${route}`;
-    } else {
-        method = "post";
-        formData.append("_method", "PUT");
-        url = `/crud/${route}/${id_form}`;
-    }
-
-    axios({
-        method,
-        url,
-        data,
-        headers: {
-            "Content-Type": "multipart/form-data",
-        },
-    })
-        .then(function (response) {
-            toastr[response.data.type](
-                response.data.pesan,
-                response.data.judul
-            );
-            if (response.data.type !== "success") {
-                return;
-            }
-            // if role penyewa reload page
-            role === "penyewa" && window.location.reload();
-            resetForm();
-            my_grid.forceRender();
+        axios({
+            method,
+            url,
+            data,
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
         })
-        .catch(function (error) {
-            console.log(error);
-        });
-});
+            .then(function (response) {
+                toastr[response.data.type](
+                    response.data.pesan,
+                    response.data.judul
+                );
+                if (response.data.type !== "success") {
+                    return;
+                }
+                // if role penyewa reload page
+                role === "penyewa" && window.location.reload();
+                resetForm();
+                my_grid.forceRender();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    });
+}
 
 const resetForm = () => {
     $(".selectReset").val("").trigger("change");

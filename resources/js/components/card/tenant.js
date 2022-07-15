@@ -21,7 +21,12 @@ const inCard = (
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">Data Diri ${first_name} ${last_name}<span class="text-danger float-end">${status}</span>
+                            <h5 class="card-title">Data Diri ${first_name} ${last_name}
+                            <span class="float-end">${
+                                status == "inactive"
+                                    ? '<span class="badge badge-danger">Tidak Aktif</span>'
+                                    : '<span class="badge badge-success">Aktif</span>'
+                            }</span>
                             </h5>
                             <table class="table">
                                 <tbody>
