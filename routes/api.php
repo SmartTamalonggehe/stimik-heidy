@@ -21,5 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('schedule', [ScheduleAPI::class, 'index'])->name('schedule.index');
+Route::get('schedule/history/{id}', [ScheduleAPI::class, 'history'])->name('schedule.history');
 // sub district
 Route::get('sub-district', [SubDistrictAPI::class, 'index'])->name('sub-district.index');

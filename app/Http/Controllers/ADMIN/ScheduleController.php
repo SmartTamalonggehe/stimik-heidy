@@ -2,12 +2,42 @@
 
 namespace App\Http\Controllers\ADMIN;
 
-use App\Http\Controllers\Controller;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class ScheduleController extends Controller
 {
+    // validation
+    protected function spartaValidation($request, $id = "")
+    {
+        $required = "";
+        if ($id == "") {
+            $required = "required";
+        }
+        $rules = [
+            'date_start' => 'required',
+            'date_end' => 'required',
+            'purpose' => 'required',
+        ];
+
+        $messages = [
+            'date_start.required' => 'Tgl mulai harus diisi.',
+            'date_end.required' => 'Tgl mulai harus diisi.',
+            'purpose.required' => 'Tujuan sewa harus diisi.',
+        ];
+        $validator = Validator::make($request, $rules, $messages);
+
+        if ($validator->fails()) {
+            $pesan = [
+                'judul' => 'Gagal',
+                'type' => 'error',
+                'pesan' => $validator->errors()->all(),
+            ];
+            return response()->json($pesan);
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +45,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $data = Schedule::latest()->with('tenant')->get();
+        $data = Schedule::orderBy('date_end', 'DESC')->with('tenant')->get();
         return response()->json($data);
     }
 
@@ -37,7 +67,25 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data_req = $request->all();
+        // return $data_req;
+        $validate = $this->spartaValidation($data_req);
+        if ($validate) {
+            return $validate;
+        }
+        // change date format
+        $data_req['date_start'] = date('Y-m-d', strtotime($data_req['date_start']));
+        $data_req['date_end'] = date('Y-m-d', strtotime($data_req['date_end']));
+        $data_req['status'] = 'processing';
+        $data_req['price'] = 12000000;
+
+        Schedule::create($data_req);
+        $pesan = [
+            'judul' => 'Berhasil',
+            'type' => 'success',
+            'pesan' => 'Data berhasil ditambahkan.',
+        ];
+        return response()->json($pesan);
     }
 
     /**

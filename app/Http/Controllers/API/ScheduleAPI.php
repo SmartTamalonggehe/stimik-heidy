@@ -10,7 +10,15 @@ class ScheduleAPI extends Controller
 {
     public function index()
     {
-        $data = Schedule::where('status', 'active')->latest()->with('tenant')->get();
+        $data = Schedule::orderBy('date_end', 'DESC')->where('status', 'active')->latest()->with('tenant')->get();
+        return response()->json($data);
+    }
+
+    public function history($id)
+    {
+        $data = Schedule::orderBy('date_end', 'DESC')->where('tenant_id', $id)->latest()
+            ->with('tenant', 'proof')
+            ->get();
         return response()->json($data);
     }
 }

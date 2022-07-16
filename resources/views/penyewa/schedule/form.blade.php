@@ -9,11 +9,27 @@
                 @csrf
                 <div class="modal-body">
                     <input type="hidden" name="id" class="inputReset" id="id-form">
+                    <input type="hidden" name="tenant_id" id="tenant_id" value="{{ $user->id }}">
                     <div class="row">
+                        <div class="col-12 col-lg-6 mb-2">
+                            <label for="date_start" class="form-label">Tgl. Mulai <span>*</span></label>
+                            <input type="text" class="form-control inputReset" id="date_start" name="date_start"
+                                required>
+                        </div>
+                        <div class="col-12 col-lg-6 mb-2">
+                            <label for="date_end" class="form-label">Tgl. Selesai <span>*</span></label>
+                            <input type="text" class="form-control inputReset" id="date_end" name="date_end"
+                                required>
+                        </div>
+                        {{-- <div class="col-12 mb-2">
+                            <label for="price" class="form-label">Price<span>*</span></label>
+                            <input type="text" class="form-control inputReset" id="price" name="price"
+                                required>
+                        </div> --}}
                         <div class="col-12 mb-2">
-                            <label for="name" class="form-label">Nama Kabupaten <span>*</span></label>
-                            <input type="text" class="form-control inputReset" id="name" name="name"
-                                placeholder="Masukkan Judul" required>
+                            <label for="purpose" class="form-label">Tujuan Sewa<span>*</span></label>
+                            <input type="text" class="form-control inputReset" id="purpose" name="purpose"
+                                required>
                         </div>
                     </div>
                 </div>

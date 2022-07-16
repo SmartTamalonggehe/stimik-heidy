@@ -14,4 +14,8 @@ class Schedule extends Model
     {
         return $this->belongsTo(Tenant::class);
     }
+    public function proof()
+    {
+        return $this->hasOne(Proof::class);
+    }
 }

@@ -16,3 +16,7 @@ import "./components/tables/galery";
 import "./components/tables/facility";
 import "./components/tables/schedules";
 import "./components/tables/tenant";
+import "./components/tables/history-schedules";
+
+// datepicker
+import "./components/select/datapicker";

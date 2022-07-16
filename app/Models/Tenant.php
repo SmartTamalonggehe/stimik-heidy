@@ -14,4 +14,9 @@ class Tenant extends Model
     {
         return $this->belongsTo(SubDistrict::class, 'sub_district_id');
     }
+
+    public function schedule()
+    {
+        return $this->hasMany(Schedule::class, 'tenant_id');
+    }
 }

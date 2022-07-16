@@ -24,7 +24,7 @@ class ScheduleFactory extends Factory
             'date_end' => $this->faker->dateTime,
             'price' => $this->faker->randomNumber(5, true),
             'purpose' => $this->faker->text,
-            'status' => $this->faker->randomElement(['active', 'inactive']),
+            'status' => $this->faker->randomElement(['active', 'inactive', 'processing']),
         ];
     }
 }
