@@ -24,12 +24,12 @@
                     </li>
                     <li>
                         <a class="nav-link" href="{{ route('penyewa.tenant') }}">
-                            <i data-feather="home"></i><span>Data Diri</span>
+                            <i data-feather="user-plus"></i><span>Data Diri</span>
                         </a>
                     </li>
                     <li>
                         <a class="nav-link" href="{{ route('penyewa.schedule') }}">
-                            <i data-feather="home"></i><span>Sewa</span>
+                            <i data-feather="save"></i><span>Sewa</span>
                         </a>
                     </li>
                     {{-- <li class="dropdown collapsed">

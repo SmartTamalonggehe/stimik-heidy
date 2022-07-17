@@ -34,22 +34,22 @@
                     </li>
                     <li>
                         <a class="nav-link" href="{{ route('admin.gallery') }}">
-                            <i data-feather="home"></i><span>Galeri</span>
+                            <i data-feather="image"></i><span>Galeri</span>
                         </a>
                     </li>
                     <li>
                         <a class="nav-link" href="{{ route('admin.facility') }}">
-                            <i data-feather="home"></i><span>Fasilitas</span>
+                            <i data-feather="activity"></i><span>Fasilitas</span>
                         </a>
                     </li>
                     <li>
                         <a class="nav-link" href="{{ route('admin.tenant') }}">
-                            <i data-feather="home"></i><span>Penyewa</span>
+                            <i data-feather="user-check"></i><span>Penyewa</span>
                         </a>
                     </li>
                     <li>
                         <a class="nav-link" href="{{ route('admin.schedule') }}">
-                            <i data-feather="home"></i><span>Jadwal Sewa</span>
+                            <i data-feather="monitor"></i><span>Jadwal Sewa</span>
                         </a>
                     </li>
                 </ul>
