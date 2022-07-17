@@ -11,6 +11,7 @@ export default defineConfig({
             "resources/js/app.js",
             "resources/js/components.js",
             "resources/js/my-crud.js",
+            "resources/js/my-chart.js",
         ]),
     ],
     resolve: {

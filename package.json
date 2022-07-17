@@ -16,6 +16,7 @@
         "vite": "^2.9.11"
     },
     "dependencies": {
+        "apexcharts": "^3.35.3",
         "gridjs": "^5.0.2",
         "jquery": "^3.6.0",
         "lightbox2": "^2.11.3",

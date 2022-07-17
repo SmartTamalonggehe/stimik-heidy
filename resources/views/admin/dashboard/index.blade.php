@@ -4,14 +4,11 @@
 @section('content')
     <div class="col-sm-12">
         <div class="card">
-            <div class="card-header pb-0">
-                <h5>Sample Card</h5><span>lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit</span>
-            </div>
+            <div id="chart-year"></div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-
+    @vite('resources/js/my-chart.js')
 @endsection
