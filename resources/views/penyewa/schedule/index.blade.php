@@ -38,6 +38,7 @@ $user = auth()->user()->tenant;
     </div>
     <div class="col-12">
         @include("penyewa.$folder.form")
+        @include("penyewa.$folder.form-upload")
     </div>
 @endsection
 

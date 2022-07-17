@@ -2,29 +2,33 @@ import { selectSubDistrict } from "../components/select/sub-district";
 import { removeImages } from "./tambah";
 import { modal_crud, setSaveMethod } from "./tools";
 
-$(document).on("click", ".btn-ubah", function (e) {
-    e.preventDefault();
-    const href = $(this).data("id");
-    console.log(href);
-    axios({
-        method: "get",
-        url: `/crud/${route}/${href}/edit`,
-    })
-        .then(function (response) {
-            // show modal
-            modal_crud.toggle();
-            // set save_method
-            setSaveMethod("ubah");
-            // set attribut form
-            document.getElementById("judul-form").innerText = "From Ubah Data";
-            document.getElementById("tombol-form").innerText = "Simpan Data";
-            // call formData
-            console.log(route);
-            formData(response.data);
+// click body class constant .btn-ubah-status
+document.addEventListener("click", function handleClick(event) {
+    if (event.target.classList.contains("btn-ubah")) {
+        // get data-id
+        const id = event.target.dataset.id;
+        axios({
+            method: "get",
+            url: `/crud/${route}/${id}/edit`,
         })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                // show modal
+                modal_crud.toggle();
+                // set save_method
+                setSaveMethod("ubah");
+                // set attribut form
+                document.getElementById("judul-form").innerText =
+                    "From Ubah Data";
+                document.getElementById("tombol-form").innerText =
+                    "Simpan Data";
+                // call formData
+                console.log(route);
+                formData(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 });
 
 const formData = (data) => {

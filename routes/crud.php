@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ADMIN\ProofController;
 use App\Http\Controllers\ADMIN\TenantController;
 use App\Http\Controllers\ADMIN\GalleryController;
 use App\Http\Controllers\ADMIN\DistrictController;
@@ -16,5 +17,6 @@ Route::prefix('crud')->middleware('auth')->group(function () {
         'facility' => FacilityController::class,
         'schedule' => ScheduleController::class,
         'tenant' => TenantController::class,
+        'proof' => ProofController::class,
     ]);
 });

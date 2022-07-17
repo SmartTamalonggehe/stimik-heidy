@@ -66,6 +66,16 @@ if (history_schedule_table) {
                             `<span class="badge badge-success">Diterima</span>`
                         );
                     }
+                    let btn_bukti = "";
+                    if (role === "penyewa") {
+                        if (item.proof) {
+                            btn_bukti = `<a href="${item.proof.image}" data-lightbox="gambar" data-title="${item.proof.title}">
+                                            <img src="${item.proof.image}" class="img-thumbnail" alt="...">
+                                        </a>`;
+                        } else {
+                            btn_bukti = `<button class="btn btn-sm btn-outline-primary btn-upload" data-id="${item.id}">Upload Bukti</button>`;
+                        }
+                    }
 
                     return [
                         index + 1,
@@ -73,8 +83,9 @@ if (history_schedule_table) {
                             "DD MMM YYYY"
                         )} - ${moment(item.date_end).format("DD MMM YYYY")}`,
                         item.purpose,
-
                         status_text,
+                        btn_bukti,
+                        role === "penyewa" ? "" : html(`${item.proof}`),
                         role !== "penyewa"
                             ? `
                     <button class="btn btn-outline-warning btn-sm btn-ubah" data-id="${item.id}">Edit</button>
@@ -97,7 +108,18 @@ if (history_schedule_table) {
         });
         const data_last = data_sort[0];
         if (data_last.status === "processing") {
-            btn_tambah.style.display = "none";
+            // remove button tambah
+            btn_tambah.remove();
+        }
+    });
+    // upload bukti kirim
+    document.addEventListener("click", (e) => {
+        const btn_upload = e.target.closest(".btn-upload");
+        if (btn_upload) {
+            const id = btn_upload.getAttribute("data-id");
+            document.getElementById("schedule_id").value = id;
+            // show modal upload bukti kirim
+            $("#modal-upload").modal("show");
         }
     });
 }
