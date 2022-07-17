@@ -29,4 +29,8 @@ Route::prefix('admin')->middleware('auth', 'role:ADMIN')->group(function () {
     Route::get('tenant', function () {
         return view('admin.tenant.index');
     })->name('admin.tenant');
+    // schedule
+    Route::get('schedule', function () {
+        return view('admin.schedule.index');
+    })->name('admin.schedule');
 });

@@ -45,7 +45,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $data = Schedule::orderBy('date_end', 'DESC')->with('tenant')->get();
+        $data = Schedule::orderBy('date_end', 'DESC')->with('tenant', 'proof')->get();
         return response()->json($data);
     }
 
@@ -107,7 +107,8 @@ class ScheduleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Schedule::find($id);
+        return response()->json($data);
     }
 
     /**
@@ -119,7 +120,17 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data_req = $request->all();
+        // find data by id
+        $find_data = Schedule::find($id);
+
+        $find_data->update($data_req);
+        $pesan = [
+            'judul' => 'Berhasil',
+            'type' => 'success',
+            'pesan' => 'Data berhasil diperbaharui.',
+        ];
+        return response()->json($pesan);
     }
 
     /**

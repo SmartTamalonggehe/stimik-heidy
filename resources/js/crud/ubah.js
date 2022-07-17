@@ -110,4 +110,8 @@ const formData = (data) => {
             `<h6 class="mt-3">Gambar Lama</h6> <img src="${data.ktp_picture}" width="100%" height="150px">`
         );
     }
+    if (route == "schedule") {
+        document.getElementById("id-form").value = data.id;
+        document.getElementById("status").value = data.status;
+    }
 };
