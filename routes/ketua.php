@@ -8,6 +8,6 @@ Route::prefix('ketua')->middleware('auth', 'role:KETUA')->group(function () {
     });
 
     Route::get('dahsboard', function () {
-        return 'ketua';
+        return view('ketua.dashboard.index');
     })->name('ketua.dashboard');
 });
