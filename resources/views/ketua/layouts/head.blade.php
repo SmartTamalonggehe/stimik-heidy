@@ -40,6 +40,6 @@
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}">
 
-    @vite('resources/css/app.css')
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     @yield('css')

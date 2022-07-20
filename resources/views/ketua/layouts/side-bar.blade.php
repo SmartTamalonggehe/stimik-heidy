@@ -22,6 +22,11 @@
                             <i data-feather="home"></i><span>Dashboard</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('ketua.laporan') }}">
+                            <i data-feather="file-text"></i><span>Laporan</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

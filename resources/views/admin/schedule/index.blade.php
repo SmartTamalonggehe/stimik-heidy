@@ -27,5 +27,5 @@ $title = 'Jadwal Sewa';
 @endsection
 
 @section('scripts')
-    @vite('resources/js/my-crud.js')
+    <script src="{{ mix('js/my-crud.js') }}"></script>
 @endsection

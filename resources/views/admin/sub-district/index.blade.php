@@ -27,6 +27,6 @@ $title = 'Kecamatan';
 @endsection
 
 @section('scripts')
-    @vite('resources/js/my-crud.js')
+    <script src="{{ mix('js/my-crud.js') }}"></script>
     <script src="{{ asset('assets/js/select2.full.js') }}"></script>
 @endsection

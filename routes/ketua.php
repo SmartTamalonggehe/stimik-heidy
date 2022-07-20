@@ -10,4 +10,8 @@ Route::prefix('ketua')->middleware('auth', 'role:KETUA')->group(function () {
     Route::get('dahsboard', function () {
         return view('ketua.dashboard.index');
     })->name('ketua.dashboard');
+
+    Route::get('laporan', function () {
+        return view('ketua.laporan.index');
+    })->name('ketua.laporan');
 });

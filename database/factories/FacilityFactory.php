@@ -17,7 +17,8 @@ class FacilityFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'amount' => $this->faker->numberBetween(1, 10),
         ];
     }
 }
