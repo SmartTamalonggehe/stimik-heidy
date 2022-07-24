@@ -75,11 +75,11 @@ class GalleryController extends Controller
         // save image to folder galery
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         // storage file image
-        Storage::putFileAs('/public', $image, "galery_$imageName");
+        Storage::putFileAs('my_images/gallery', $image, "$imageName");
         // get APP_URL from .env
         $url = env('APP_URL');
 
-        $data_req['image'] = "$url/storage/galery_$imageName";
+        $data_req['image'] = "$url/my_images/gallery/$imageName";
         Gallery::create($data_req);
         $pesan = [
             'judul' => 'Berhasil',
@@ -134,19 +134,19 @@ class GalleryController extends Controller
         // save image if exist
         if ($request->hasFile('image')) {
             //    delete image
-            $img = str_replace(env('APP_URL') . '/storage', "", $data_image);
-            Storage::delete('public/' . $img);
+            $img = str_replace(env('APP_URL'), "", $data_image);
+            Storage::delete($img);
 
             //   save image
             $image = $data_req['image'];
             // save image to folder galery
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             // storage file image
-            Storage::putFileAs('/public', $image, "galery_$imageName");
+            Storage::putFileAs('/my_images/gallery', $image, "$imageName");
             // get APP_URL from .env
             $url = env('APP_URL');
 
-            $data_req['image'] = "$url/storage/galery_$imageName";
+            $data_req['image'] = "$url/my_images/gallery/$imageName";
         }
         $find_data->update($data_req);
         $pesan = [
@@ -168,8 +168,8 @@ class GalleryController extends Controller
         $data = Gallery::findOrFail($id);
         // delete file image
         $img = $data->image;
-        $img = str_replace(env('APP_URL') . '/storage', "", $img);
-        Storage::delete('public/' . $img);
+        $img = str_replace(env('APP_URL'), "", $img);
+        Storage::delete($img);
         // delete data
         $data->delete();
         $pesan = [
