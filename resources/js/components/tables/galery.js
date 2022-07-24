@@ -1,4 +1,5 @@
 import { Grid, html } from "gridjs";
+import { changeStyleTable } from "../side-bar";
 const gallery_table = document.getElementById("gallery-table");
 
 if (gallery_table) {
@@ -55,4 +56,5 @@ if (gallery_table) {
                 ]),
         },
     }).render(gallery_table);
+    changeStyleTable();
 }

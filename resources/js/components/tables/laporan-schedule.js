@@ -1,6 +1,7 @@
 // laporan-schedule
 import axios from "axios";
 import { Grid, html } from "gridjs";
+import { changeStyleTable } from "../side-bar";
 // moment
 import moment from "./../../moment";
 
@@ -42,6 +43,7 @@ const showTable = (year = "20") => {
                 }),
         },
     }).render(laporan_schedule);
+    changeStyleTable();
     my_grid.forceRender();
 };
 

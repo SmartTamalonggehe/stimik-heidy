@@ -2592,8 +2592,13 @@ selectDistrict();
 /*!*********************************************!*\
   !*** ./resources/js/components/side-bar.js ***!
   \*********************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "changeStyleTable": () => (/* binding */ changeStyleTable)
+/* harmony export */ });
 var nav_menu = document.querySelector(".nav-menu");
 var href = window.location.href;
 
@@ -2630,12 +2635,26 @@ if (localStorage.getItem("dark-mode") === "true") {
 
   mode.children[0].classList.remove("fa-moon-o");
   mode.children[0].classList.add("fa-lightbulb-o");
-} // toggle dark mode on click of button
+}
+
+var changeStyleTable = function changeStyleTable() {
+  if (localStorage.getItem("dark-mode") === "true") {
+    my_grid.config.style = myTableStyle.style;
+  } else {
+    my_grid.config.style = {};
+  }
+}; // toggle dark mode on click of button
 
 
 mode.addEventListener("click", function () {
   localStorage.setItem("dark-mode", document.body.classList.contains("dark-only"));
+
+  if (my_grid) {
+    changeStyleTable();
+    my_grid.forceRender();
+  }
 });
+
 
 /***/ }),
 
@@ -2648,6 +2667,8 @@ mode.addEventListener("click", function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gridjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gridjs */ "./node_modules/gridjs/dist/gridjs.module.js");
+/* harmony import */ var _side_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../side-bar */ "./resources/js/components/side-bar.js");
+
 
 var district_table = document.getElementById("district-table");
 
@@ -2691,6 +2712,7 @@ if (district_table) {
       }
     }
   }).render(district_table);
+  (0,_side_bar__WEBPACK_IMPORTED_MODULE_1__.changeStyleTable)();
 }
 
 /***/ }),
@@ -2704,6 +2726,8 @@ if (district_table) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gridjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gridjs */ "./node_modules/gridjs/dist/gridjs.module.js");
+/* harmony import */ var _side_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../side-bar */ "./resources/js/components/side-bar.js");
+
 
 var facility_table = document.querySelector("#facility-table");
 
@@ -2743,6 +2767,7 @@ if (facility_table) {
       }
     }
   }).render(facility_table);
+  (0,_side_bar__WEBPACK_IMPORTED_MODULE_1__.changeStyleTable)();
 }
 
 /***/ }),
@@ -2756,6 +2781,8 @@ if (facility_table) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gridjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gridjs */ "./node_modules/gridjs/dist/gridjs.module.js");
+/* harmony import */ var _side_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../side-bar */ "./resources/js/components/side-bar.js");
+
 
 var gallery_table = document.getElementById("gallery-table");
 
@@ -2806,6 +2833,7 @@ if (gallery_table) {
       }
     }
   }).render(gallery_table);
+  (0,_side_bar__WEBPACK_IMPORTED_MODULE_1__.changeStyleTable)();
 }
 
 /***/ }),
@@ -2821,7 +2849,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var gridjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gridjs */ "./node_modules/gridjs/dist/gridjs.module.js");
-/* harmony import */ var _moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../moment */ "./resources/js/moment.js");
+/* harmony import */ var _side_bar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../side-bar */ "./resources/js/components/side-bar.js");
+/* harmony import */ var _moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../moment */ "./resources/js/moment.js");
+
 
  // moment
 
@@ -2898,11 +2928,12 @@ if (history_schedule_table) {
             }
           }
 
-          return [index + 1, "".concat((0,_moment__WEBPACK_IMPORTED_MODULE_2__["default"])(item.date_start).format("DD MMM YYYY"), " - ").concat((0,_moment__WEBPACK_IMPORTED_MODULE_2__["default"])(item.date_end).format("DD MMM YYYY")), item.purpose, status_text, btn_bukti, role === "penyewa" ? "" : (0,gridjs__WEBPACK_IMPORTED_MODULE_1__.html)("".concat(item.proof)), role !== "penyewa" ? "\n                    <button class=\"btn btn-outline-warning btn-sm btn-ubah\" data-id=\"".concat(item.id, "\">Edit</button>\n                    <button class=\"btn btn-outline-danger btn-sm my-2 btn-hapus\" data-id=\"").concat(item.id, "\">Hapus</button>\n                    ") : "",,];
+          return [index + 1, "".concat((0,_moment__WEBPACK_IMPORTED_MODULE_3__["default"])(item.date_start).format("DD MMM YYYY"), " - ").concat((0,_moment__WEBPACK_IMPORTED_MODULE_3__["default"])(item.date_end).format("DD MMM YYYY")), item.purpose, status_text, btn_bukti, role === "penyewa" ? "" : (0,gridjs__WEBPACK_IMPORTED_MODULE_1__.html)("".concat(item.proof)), role !== "penyewa" ? "\n                    <button class=\"btn btn-outline-warning btn-sm btn-ubah\" data-id=\"".concat(item.id, "\">Edit</button>\n                    <button class=\"btn btn-outline-danger btn-sm my-2 btn-hapus\" data-id=\"").concat(item.id, "\">Hapus</button>\n                    ") : "",,];
         });
       }
     }
-  }).render(history_schedule_table); // show hide button btn-tambah
+  }).render(history_schedule_table);
+  (0,_side_bar__WEBPACK_IMPORTED_MODULE_2__.changeStyleTable)(); // show hide button btn-tambah
 
   var btn_tambah = document.getElementById("btn-tambah");
   axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (res) {
@@ -2945,8 +2976,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var gridjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gridjs */ "./node_modules/gridjs/dist/gridjs.module.js");
-/* harmony import */ var _moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../moment */ "./resources/js/moment.js");
+/* harmony import */ var _side_bar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../side-bar */ "./resources/js/components/side-bar.js");
+/* harmony import */ var _moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../moment */ "./resources/js/moment.js");
 // laporan-schedule
+
 
  // moment
 
@@ -2979,11 +3012,12 @@ var showTable = function showTable() {
       url: url,
       then: function then(data) {
         return data.map(function (item, index) {
-          return [index + 1, "".concat(item.tenant.first_name, " ").concat(item.tenant.last_name), "".concat((0,_moment__WEBPACK_IMPORTED_MODULE_2__["default"])(item.date_start).format("DD MMM YYYY"), " - ").concat((0,_moment__WEBPACK_IMPORTED_MODULE_2__["default"])(item.date_end).format("DD MMM YYYY")), item.purpose];
+          return [index + 1, "".concat(item.tenant.first_name, " ").concat(item.tenant.last_name), "".concat((0,_moment__WEBPACK_IMPORTED_MODULE_3__["default"])(item.date_start).format("DD MMM YYYY"), " - ").concat((0,_moment__WEBPACK_IMPORTED_MODULE_3__["default"])(item.date_end).format("DD MMM YYYY")), item.purpose];
         });
       }
     }
   }).render(laporan_schedule);
+  (0,_side_bar__WEBPACK_IMPORTED_MODULE_2__.changeStyleTable)();
   my_grid.forceRender();
 };
 
@@ -3007,7 +3041,9 @@ if (laporan_schedule) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gridjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gridjs */ "./node_modules/gridjs/dist/gridjs.module.js");
-/* harmony import */ var _moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../moment */ "./resources/js/moment.js");
+/* harmony import */ var _side_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../side-bar */ "./resources/js/components/side-bar.js");
+/* harmony import */ var _moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../moment */ "./resources/js/moment.js");
+
  // moment
 
 
@@ -3078,11 +3114,12 @@ if (schedule_table) {
             btn_bukti = "<a href=\"".concat(item.proof.image, "\" data-lightbox=\"gambar\" data-title=\"").concat(item.proof.title, "\">\n                                            <img src=\"").concat(item.proof.image, "\" class=\"img-thumbnail\" alt=\"...\">\n                                        </a>");
           }
 
-          return [index + 1, "".concat(item.tenant.first_name, " ").concat(item.tenant.last_name), "".concat((0,_moment__WEBPACK_IMPORTED_MODULE_1__["default"])(item.date_start).format("DD MMM YYYY"), " - ").concat((0,_moment__WEBPACK_IMPORTED_MODULE_1__["default"])(item.date_end).format("DD MMM YYYY")), item.purpose, role !== "penyewa" ? status_text : "", role !== "penyewa" ? btn_bukti : "", role !== "penyewa" ? "\n                    <button class=\"btn btn-outline-warning btn-sm btn-ubah\" data-id=\"".concat(item.id, "\">Edit</button>\n                    ") : "",,];
+          return [index + 1, "".concat(item.tenant.first_name, " ").concat(item.tenant.last_name), "".concat((0,_moment__WEBPACK_IMPORTED_MODULE_2__["default"])(item.date_start).format("DD MMM YYYY"), " - ").concat((0,_moment__WEBPACK_IMPORTED_MODULE_2__["default"])(item.date_end).format("DD MMM YYYY")), item.purpose, role !== "penyewa" ? status_text : "", role !== "penyewa" ? btn_bukti : "", role !== "penyewa" ? "\n                    <button class=\"btn btn-outline-warning btn-sm btn-ubah\" data-id=\"".concat(item.id, "\">Edit</button>\n                    ") : "",,];
         });
       }
     }
   }).render(schedule_table);
+  (0,_side_bar__WEBPACK_IMPORTED_MODULE_1__.changeStyleTable)();
 }
 
 /***/ }),
@@ -3096,6 +3133,8 @@ if (schedule_table) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gridjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gridjs */ "./node_modules/gridjs/dist/gridjs.module.js");
+/* harmony import */ var _side_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../side-bar */ "./resources/js/components/side-bar.js");
+
 
 var sub_district_table = document.getElementById("sub-district-table");
 
@@ -3136,6 +3175,7 @@ if (sub_district_table) {
       }
     }
   }).render(sub_district_table);
+  (0,_side_bar__WEBPACK_IMPORTED_MODULE_1__.changeStyleTable)();
 }
 
 /***/ }),
@@ -3149,6 +3189,8 @@ if (sub_district_table) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gridjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gridjs */ "./node_modules/gridjs/dist/gridjs.module.js");
+/* harmony import */ var _side_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../side-bar */ "./resources/js/components/side-bar.js");
+
 
 var tenant_table = document.getElementById("tenant-table");
 
@@ -3213,6 +3255,7 @@ if (tenant_table) {
       }
     }
   }).render(tenant_table);
+  (0,_side_bar__WEBPACK_IMPORTED_MODULE_1__.changeStyleTable)();
 }
 
 /***/ }),
@@ -27310,7 +27353,6 @@ var __webpack_exports__ = {};
   \************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_side_bar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/side-bar */ "./resources/js/components/side-bar.js");
-/* harmony import */ var _components_side_bar__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_components_side_bar__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_images_upload__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/images/upload */ "./resources/js/components/images/upload.js");
 /* harmony import */ var _components_images_upload__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_images_upload__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_logout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/logout */ "./resources/js/components/logout.js");

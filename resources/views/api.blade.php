@@ -19,6 +19,9 @@
     <p>
         <a href="{{ route('api.facility.index') }}" target="blank">Facility</a>
     </p>
+    <p>
+        <a href="{{ route('api.gallery.index') }}" target="blank">Gallery</a>
+    </p>
 
 </body>
 

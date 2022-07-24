@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\GalleryAPI;
 use App\Http\Controllers\API\FacilityAPI;
 use App\Http\Controllers\API\ScheduleAPI;
 use App\Http\Controllers\API\SubDistrictAPI;
@@ -37,3 +38,6 @@ Route::get('laporan/schedule/{id}', [LaporanSchedule::class, 'show'])->name('api
 
 // facility api
 Route::get('facility', [FacilityAPI::class, 'index'])->name('api.facility.index');
+
+// gallery api
+Route::get('gallery', [GalleryAPI::class, 'index'])->name('api.gallery.index');

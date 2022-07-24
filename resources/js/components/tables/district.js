@@ -1,4 +1,5 @@
 import { Grid, html } from "gridjs";
+import { changeStyleTable } from "../side-bar";
 const district_table = document.getElementById("district-table");
 if (district_table) {
     my_grid = new Grid({
@@ -46,4 +47,6 @@ if (district_table) {
                 ]),
         },
     }).render(district_table);
+
+    changeStyleTable();
 }

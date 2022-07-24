@@ -1,4 +1,5 @@
 import { Grid, html } from "gridjs";
+import { changeStyleTable } from "../side-bar";
 const tenant_table = document.getElementById("tenant-table");
 
 if (tenant_table) {
@@ -84,4 +85,5 @@ if (tenant_table) {
                 }),
         },
     }).render(tenant_table);
+    changeStyleTable();
 }

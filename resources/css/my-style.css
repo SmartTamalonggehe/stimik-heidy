@@ -35,3 +35,7 @@ input.gridjs-input {
     z-index: 100;
     cursor: pointer;
 }
+
+.cek {
+    color: rgb(255, 255, 255);
+}

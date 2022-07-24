@@ -26,6 +26,7 @@ if (nav_menu) {
         }
     });
 }
+
 const mode = document.querySelector(".mode");
 // body class="dark-only"
 // check mode in localStorage and set body class
@@ -35,10 +36,25 @@ if (localStorage.getItem("dark-mode") === "true") {
     mode.children[0].classList.remove("fa-moon-o");
     mode.children[0].classList.add("fa-lightbulb-o");
 }
+
+const changeStyleTable = () => {
+    if (localStorage.getItem("dark-mode") === "true") {
+        my_grid.config.style = myTableStyle.style;
+    } else {
+        my_grid.config.style = {};
+    }
+};
+
 // toggle dark mode on click of button
 mode.addEventListener("click", () => {
     localStorage.setItem(
         "dark-mode",
         document.body.classList.contains("dark-only")
     );
+    if (my_grid) {
+        changeStyleTable();
+        my_grid.forceRender();
+    }
 });
+
+export { changeStyleTable };

@@ -36,6 +36,10 @@ input.gridjs-input {
     cursor: pointer;
 }
 
+.cek {
+    color: rgb(255, 255, 255);
+}
+
 .gridjs-head button, .gridjs-footer button {
   cursor: pointer;
   background-color: transparent;

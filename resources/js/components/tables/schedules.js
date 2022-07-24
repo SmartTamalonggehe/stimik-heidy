@@ -1,4 +1,5 @@
 import { Grid, html } from "gridjs";
+import { changeStyleTable } from "../side-bar";
 // moment
 import moment from "./../../moment";
 
@@ -91,4 +92,5 @@ if (schedule_table) {
                 }),
         },
     }).render(schedule_table);
+    changeStyleTable();
 }

@@ -16,8 +16,15 @@ class GalleryFactory extends Factory
      */
     public function definition()
     {
+        // random image from picsum
+        $image = 'https://picsum.photos/v2/list?page=2&limit=100';
+        $image = json_decode(file_get_contents($image));
+        $image = $image[array_rand($image)];
+        $image = $image->download_url;
+
         return [
-            //
+            'image' => $image,
+            'description' => $this->faker->text(),
         ];
     }
 }

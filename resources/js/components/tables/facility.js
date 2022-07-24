@@ -1,4 +1,5 @@
 import { Grid, html } from "gridjs";
+import { changeStyleTable } from "../side-bar";
 const facility_table = document.querySelector("#facility-table");
 
 if (facility_table) {
@@ -45,4 +46,5 @@ if (facility_table) {
                 ]),
         },
     }).render(facility_table);
+    changeStyleTable();
 }

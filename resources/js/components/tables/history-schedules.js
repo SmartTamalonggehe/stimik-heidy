@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Grid, html } from "gridjs";
+import { changeStyleTable } from "../side-bar";
 // moment
 import moment from "./../../moment";
 
@@ -97,6 +98,7 @@ if (history_schedule_table) {
                 }),
         },
     }).render(history_schedule_table);
+    changeStyleTable();
 
     // show hide button btn-tambah
     const btn_tambah = document.getElementById("btn-tambah");
