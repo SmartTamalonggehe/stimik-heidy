@@ -75,11 +75,11 @@ class GalleryController extends Controller
         // save image to folder galery
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         // storage file image
-        Storage::putFileAs('/public/galery', $image, $imageName);
+        Storage::putFileAs('/public', $image, "galery_$imageName");
         // get APP_URL from .env
         $url = env('APP_URL');
 
-        $data_req['image'] = "$url/storage/galery/$imageName";
+        $data_req['image'] = "$url/storage/galery_$imageName";
         Gallery::create($data_req);
         $pesan = [
             'judul' => 'Berhasil',
@@ -142,11 +142,11 @@ class GalleryController extends Controller
             // save image to folder galery
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             // storage file image
-            Storage::putFileAs('/public/galery', $image, $imageName);
+            Storage::putFileAs('/public', $image, "galery_$imageName");
             // get APP_URL from .env
             $url = env('APP_URL');
 
-            $data_req['image'] = "$url/storage/galery/$imageName";
+            $data_req['image'] = "$url/storage/galery_$imageName";
         }
         $find_data->update($data_req);
         $pesan = [
