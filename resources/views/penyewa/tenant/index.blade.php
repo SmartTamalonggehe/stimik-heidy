@@ -49,5 +49,4 @@ $user_tenant = auth()->user()->tenant;
 
 @section('scripts')
     <script src="{{ mix('js/my-crud.js') }}"></script>
-    <script src="{{ asset('assets/js/select2.full.js') }}"></script>
 @endsection

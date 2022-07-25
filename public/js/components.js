@@ -2468,14 +2468,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _district_select__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./district-select */ "./resources/js/components/select/district-select.js");
 /* harmony import */ var _sub_district__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sub-district */ "./resources/js/components/select/sub-district.js");
 
- // select-basic
 
-try {
-  $(".select-basic").select2({
-    tags: true,
-    width: "100%"
-  });
-} catch (error) {}
 
 /***/ }),
 

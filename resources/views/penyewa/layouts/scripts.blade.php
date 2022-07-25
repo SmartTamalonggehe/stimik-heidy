@@ -1,3 +1,30 @@
+<script>
+    const myTableStyle = {
+        style: {
+            table: {
+                border: "1px solid #ccc",
+                "background-color": "#202938",
+                "border-collapse": "collapse",
+            },
+            th: {
+                "background-color": "#202938",
+                color: "#f5f5f5",
+                "border-bottom": "1px solid #ccc",
+                "text-align": "center",
+            },
+            td: {
+                "text-align": "center",
+                "background-color": "#202938",
+                color: "#f5f5f5",
+            },
+            pagination: {
+                "background-color": "#202938",
+                color: "#f5f5f5",
+            },
+        },
+    };
+</script>
+
 <script src="{{ mix('js/app.js') }}"></script>
 
 <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>

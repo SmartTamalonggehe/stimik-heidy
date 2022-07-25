@@ -18,6 +18,11 @@ $title = 'Kecamatan';
     <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
+                <select name="district_id" class="select-basic">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
                 <p>Silahkan menambah, merubah dan menghapus data {{ $title }}</p>
                 <div id="{{ $folder }}-table"></div>
             </div>
