@@ -23,21 +23,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/', function () {
-    return view('api');
+Route::middleware(['cors'])->group(function () {
+    Route::get('/', function () {
+        return view('api');
+    });
+
+    Route::get('schedule', [ScheduleAPI::class, 'index'])->name('api.schedule.index');
+    Route::get('schedule/history/{id}', [ScheduleAPI::class, 'history'])->name('api.schedule.history');
+
+    // sub district
+    Route::get('sub-district', [SubDistrictAPI::class, 'index'])->name('api.sub-district.index');
+
+    // laporan
+    Route::get('laporan/schedule/{id}', [LaporanSchedule::class, 'show'])->name('api.laporan.schedule');
+
+    // facility api
+    Route::get('facility', [FacilityAPI::class, 'index'])->name('api.facility.index');
+
+    // gallery api
+    Route::get('gallery', [GalleryAPI::class, 'index'])->name('api.gallery.index');
 });
-
-Route::get('schedule', [ScheduleAPI::class, 'index'])->name('api.schedule.index');
-Route::get('schedule/history/{id}', [ScheduleAPI::class, 'history'])->name('api.schedule.history');
-
-// sub district
-Route::get('sub-district', [SubDistrictAPI::class, 'index'])->name('api.sub-district.index');
-
-// laporan
-Route::get('laporan/schedule/{id}', [LaporanSchedule::class, 'show'])->name('api.laporan.schedule');
-
-// facility api
-Route::get('facility', [FacilityAPI::class, 'index'])->name('api.facility.index');
-
-// gallery api
-Route::get('gallery', [GalleryAPI::class, 'index'])->name('api.gallery.index');
