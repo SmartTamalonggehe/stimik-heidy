@@ -1,5 +1,4 @@
 import { getDataDistrict, getShowDataSubDistrict } from "../../getData";
-
 const sub_district_id = document.getElementById("sub-district-id");
 
 const selectSubDistrict = async (id, selected = "") => {

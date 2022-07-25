@@ -1,4 +1,4 @@
-<div class="modal fade tampilModal" id="modal-crud">
+<div class="modal fade" id="modal-crud">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">

@@ -55,7 +55,7 @@ const formData = (data) => {
     }
     if (route == "sub-district") {
         document.getElementById("id-form").value = data.id;
-        $("#district-id").val(data.district_id).trigger("change");
+        $("#district-id").val(data.district_id).trigger("change.select2");
         document.getElementById("name").value = data.name;
     }
     if (route == "gallery") {
