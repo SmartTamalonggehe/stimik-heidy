@@ -2472,11 +2472,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-$(document).ready(function () {
-  $(".select-basic").select2({
-    width: "100%"
+var this_select = $(".select-basic");
+console.log(this_select);
+
+if (this_select.length > 0) {
+  $(document).ready(function () {
+    $(".select-basic").select2({
+      width: "100%"
+    });
   });
-});
+}
 
 /***/ }),
 
