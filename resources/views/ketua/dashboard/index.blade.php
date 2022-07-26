@@ -21,5 +21,5 @@
 @endsection
 
 @section('scripts')
-    @vite('resources/js/my-chart.js')
+    <script src="{{ mix('js/my-chart.js') }}"></script>
 @endsection
