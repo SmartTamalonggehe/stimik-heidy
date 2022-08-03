@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ADMIN;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -91,11 +92,14 @@ class TenantController extends Controller
         // save image to folder tenant
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         // storage file image
-        Storage::putFileAs('my_images/tenant', $image, $imageName);
+        // Storage::putFileAs('my_images/tenant', $image, $imageName);
+        $destinationPath = public_path('/my_storage/tenant');
+        // move image to destination path
+        $image->move($destinationPath, $imageName);
         // get APP_URL from .env
         $url = env('APP_URL');
 
-        $data_req['ktp_picture'] = "$url/my_images/tenant/$imageName";
+        $data_req['ktp_picture'] = "$url/my_storage/tenant/$imageName";
         // data_req remove district_id
         unset($data_req['district_id']);
         // add status in data_req
@@ -159,17 +163,20 @@ class TenantController extends Controller
         $url = env('APP_URL');
 
         // save image if exist
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('ktp_picture')) {
             //    delete image
-            $img = str_replace(env('APP_URL'), "", $data_image);
-            Storage::delete($img);
+            $img = str_replace(env('APP_URL') . '/', "", $data_image);
+            File::delete($img);
             //   save image
             $image = $data_req['ktp_picture'];
             // save image to folder tenant
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            // storage file image
-            Storage::putFileAs('/my_images/tenant', $image, $imageName);
-            $data_req['ktp_picture'] = "$url/my_images/tenant/$imageName";
+            // destination path
+            $destinationPath = public_path('/my_storage/tenant');
+            // move image to destination path
+            $image->move($destinationPath, $imageName);
+
+            $data_req['ktp_picture'] = "$url/my_storage/tenant/$imageName";
         }
         // data_req remove district_id
         unset($data_req['district_id']);
@@ -193,8 +200,9 @@ class TenantController extends Controller
         $data = Tenant::findOrFail($id);
         // delete file image
         $img = $data->ktp_picture;
-        $img = str_replace(env('APP_URL'), "", $img);
-        Storage::delete($img);
+        $img = str_replace(env('APP_URL') . '/', "", $img);
+        // remove file image
+        File::delete($img);
         // delete data
         $data->delete();
         $pesan = [
