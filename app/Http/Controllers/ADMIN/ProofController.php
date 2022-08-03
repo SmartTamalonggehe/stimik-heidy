@@ -41,12 +41,14 @@ class ProofController extends Controller
         $image = $data_req['image'];
         // save image to folder proof
         $imageName = time() . '.' . $image->getClientOriginalExtension();
-        // storage file image
-        Storage::putFileAs('/my_images/proof', $image, $imageName);
+        // destination path
+        $destinationPath = public_path('/my_storage/proof');
+        // move image to destination path
+        $image->move($destinationPath, $imageName);
         // get APP_URL from .env
         $url = env('APP_URL');
 
-        $data_req['image'] = "$url/my_images/proof/$imageName";
+        $data_req['image'] = "$url/my_storage/proof/$imageName";
         $data_req['status'] = 'active';
         Proof::create($data_req);
         $pesan = [
