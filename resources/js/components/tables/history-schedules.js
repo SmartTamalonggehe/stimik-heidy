@@ -109,7 +109,7 @@ if (history_schedule_table) {
             return new Date(b.updated_at) - new Date(a.updated_at);
         });
         const data_last = data_sort[0];
-        if (data_last.status === "processing") {
+        if (data_last && data_last.status === "processing") {
             // remove button tambah
             btn_tambah.remove();
         }

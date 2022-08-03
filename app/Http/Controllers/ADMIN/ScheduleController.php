@@ -73,11 +73,12 @@ class ScheduleController extends Controller
         if ($validate) {
             return $validate;
         }
-        // change date format
-        $data_req['date_start'] = date('Y-m-d', strtotime($data_req['date_start']));
-        $data_req['date_end'] = date('Y-m-d', strtotime($data_req['date_end']));
         $data_req['status'] = 'processing';
         $data_req['price'] = 12000000;
+
+        // remove data_req['date_start_show'] and data_req['date_end_show']
+        unset($data_req['date_start_show']);
+        unset($data_req['date_end_show']);
 
         Schedule::create($data_req);
         $pesan = [

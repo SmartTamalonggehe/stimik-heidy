@@ -2333,23 +2333,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../moment */ "./resources/js/moment.js");
 
 
+var date_start_show = document.getElementById("date_start_show");
+
+if (date_start_show) {
+  // disable auto complete
+  date_start_show.setAttribute("autocomplete", "off"); // disable keyboard shortcuts
+
+  date_start_show.setAttribute("readonly", "readonly");
+}
+
+var date_end_show = document.getElementById("date_end_show");
+
+if (date_end_show) {
+  // disable auto complete
+  date_end_show.setAttribute("autocomplete", "off"); // disable keyboard shortcuts
+
+  date_end_show.setAttribute("readonly", "readonly");
+} // input date start and date end
+
+
 var date_start = document.getElementById("date_start");
-
-if (date_start) {
-  // disable auto complete
-  date_start.setAttribute("autocomplete", "off"); // disable keyboard shortcuts
-
-  date_start.setAttribute("readonly", "readonly");
-}
-
 var date_end = document.getElementById("date_end");
-
-if (date_end) {
-  // disable auto complete
-  date_end.setAttribute("autocomplete", "off"); // disable keyboard shortcuts
-
-  date_end.setAttribute("readonly", "readonly");
-}
 
 var startDate,
     endDate,
@@ -2364,21 +2368,23 @@ var startDate,
   endPicker.setEndRange(endDate);
 },
     startPicker = new (pikaday__WEBPACK_IMPORTED_MODULE_0___default())({
-  field: date_start,
+  field: date_start_show,
   minDate: new Date(),
   maxDate: new Date(2020, 12, 31),
   onSelect: function onSelect() {
-    date_start.value = (0,_moment__WEBPACK_IMPORTED_MODULE_1__["default"])(this.getDate()).format("Do MMMM YYYY");
+    date_start_show.value = (0,_moment__WEBPACK_IMPORTED_MODULE_1__["default"])(this.getDate()).format("Do MMMM YYYY");
+    date_start.value = (0,_moment__WEBPACK_IMPORTED_MODULE_1__["default"])(this.getDate()).format("YYYY-MM-DD");
     startDate = this.getDate();
     updateStartDate();
   }
 }),
     endPicker = new (pikaday__WEBPACK_IMPORTED_MODULE_0___default())({
-  field: date_end,
+  field: date_end_show,
   minDate: new Date(),
   maxDate: new Date(2020, 12, 31),
   onSelect: function onSelect() {
-    date_end.value = (0,_moment__WEBPACK_IMPORTED_MODULE_1__["default"])(this.getDate()).format("Do MMMM YYYY");
+    date_end_show.value = (0,_moment__WEBPACK_IMPORTED_MODULE_1__["default"])(this.getDate()).format("Do MMMM YYYY");
+    date_end.value = (0,_moment__WEBPACK_IMPORTED_MODULE_1__["default"])(this.getDate()).format("YYYY-MM-DD");
     endDate = this.getDate();
     updateEndDate();
   }
@@ -2950,7 +2956,7 @@ if (history_schedule_table) {
     });
     var data_last = data_sort[0];
 
-    if (data_last.status === "processing") {
+    if (data_last && data_last.status === "processing") {
       // remove button tambah
       btn_tambah.remove();
     }

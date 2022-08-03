@@ -12,14 +12,16 @@
                     <input type="hidden" name="tenant_id" id="tenant_id" value="{{ $user->id }}">
                     <div class="row">
                         <div class="col-12 col-lg-6 mb-2">
-                            <label for="date_start" class="form-label">Tgl. Mulai <span>*</span></label>
-                            <input type="text" class="form-control inputReset" id="date_start" name="date_start"
-                                required>
+                            <label for="date_start_show" class="form-label">Tgl. Mulai <span>*</span></label>
+                            <input type="text" class="form-control inputReset" id="date_start_show"
+                                name="date_start_show" required>
+                            <input type="hidden" class="inputReset" id="date_start" name="date_start" required>
                         </div>
                         <div class="col-12 col-lg-6 mb-2">
-                            <label for="date_end" class="form-label">Tgl. Selesai <span>*</span></label>
-                            <input type="text" class="form-control inputReset" id="date_end" name="date_end"
-                                required>
+                            <label for="date_end_show" class="form-label">Tgl. Selesai <span>*</span></label>
+                            <input type="text" class="form-control inputReset" id="date_end_show"
+                                name="date_end_show" required>
+                            <input type="hidden" class="inputReset" id="date_end" name="date_end" required>
                         </div>
                         {{-- <div class="col-12 mb-2">
                             <label for="price" class="form-label">Price<span>*</span></label>
