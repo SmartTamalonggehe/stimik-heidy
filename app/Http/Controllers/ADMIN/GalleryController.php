@@ -8,6 +8,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Facades\File;
+
+// use File;
+
 class GalleryController extends Controller
 {
     // validation
@@ -75,11 +79,16 @@ class GalleryController extends Controller
         // save image to folder galery
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         // storage file image
-        Storage::putFileAs('my_images/gallery', $image, "$imageName");
+        // Storage::putFileAs('my_images/gallery', $image, "$imageName");
+        // destination path
+        $destinationPath = public_path('/my_storage/gallery');
+        // move image to destination path
+        $image->move($destinationPath, $imageName);
+
         // get APP_URL from .env
         $url = env('APP_URL');
 
-        $data_req['image'] = "$url/my_images/gallery/$imageName";
+        $data_req['image'] = "$url/my_storage/gallery/$imageName";
         Gallery::create($data_req);
         $pesan = [
             'judul' => 'Berhasil',
@@ -134,19 +143,21 @@ class GalleryController extends Controller
         // save image if exist
         if ($request->hasFile('image')) {
             //    delete image
-            $img = str_replace(env('APP_URL'), "", $data_image);
-            Storage::delete($img);
+            $img = str_replace(env('APP_URL') . '/', "", $data_image);
+            File::delete($img);
 
             //   save image
             $image = $data_req['image'];
             // save image to folder galery
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            // storage file image
-            Storage::putFileAs('/my_images/gallery', $image, "$imageName");
+            // destination path
+            $destinationPath = public_path('/my_storage/gallery');
+            // move image to destination path
+            $image->move($destinationPath, $imageName);
             // get APP_URL from .env
             $url = env('APP_URL');
 
-            $data_req['image'] = "$url/my_images/gallery/$imageName";
+            $data_req['image'] = "$url/my_storage/gallery/$imageName";
         }
         $find_data->update($data_req);
         $pesan = [
@@ -168,8 +179,10 @@ class GalleryController extends Controller
         $data = Gallery::findOrFail($id);
         // delete file image
         $img = $data->image;
-        $img = str_replace(env('APP_URL'), "", $img);
-        Storage::delete($img);
+        $img = str_replace(env('APP_URL') . '/', "", $img);
+        // remove file image
+        File::delete($img);
+
         // delete data
         $data->delete();
         $pesan = [

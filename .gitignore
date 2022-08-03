@@ -2,6 +2,7 @@
 /public/build
 /public/hot
 /public/storage
+/public/my_storage
 /public/my_images
 /storage/*.key
 /storage
