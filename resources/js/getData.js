@@ -82,6 +82,19 @@ const getDataSchedule = () => {
         });
 };
 
+const getDataCongregations = () => {
+    return axios({
+        method: "GET",
+        url: `/crud/congregation`,
+    })
+        .then((res) => {
+            return res.data;
+        })
+        .catch((err) => {
+            alert(`Terjadi kesalahan pada server ${err}`);
+        });
+};
+
 export {
     getDataDistrict,
     dataRoute,
@@ -89,4 +102,5 @@ export {
     getShowDataSubDistrict,
     getShowDataTenant,
     getDataSchedule,
+    getDataCongregations,
 };

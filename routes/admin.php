@@ -37,4 +37,8 @@ Route::prefix('admin')->middleware('auth', 'role:ADMIN')->group(function () {
     Route::get('congregation', function () {
         return view('admin.congregation.index');
     })->name('admin.congregation');
+    // wijk
+    Route::get('wijk', function () {
+        return view('admin.wijk.index');
+    })->name('admin.wijk');
 });

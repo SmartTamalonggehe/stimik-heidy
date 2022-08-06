@@ -19,6 +19,7 @@ import "./components/tables/tenant";
 import "./components/tables/history-schedules";
 import "./components/tables/laporan-schedule";
 import "./components/tables/congregation";
+import "./components/tables/wijk";
 
 // datepicker
 import "./components/select/datapicker";

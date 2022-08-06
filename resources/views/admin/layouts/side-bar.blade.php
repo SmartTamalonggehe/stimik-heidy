@@ -31,7 +31,7 @@
                             <li><a href="{{ route('admin.district') }}">Kabupaten</a></li>
                             <li><a href="{{ route('admin.sub-district') }}">Distrik</a></li>
                             <li><a href="{{ route('admin.congregation') }}">Jemaat</a></li>
-                            <li><a href="{{ route('admin.sub-district') }}">Wijk</a></li>
+                            <li><a href="{{ route('admin.wijk') }}">Wijk</a></li>
                         </ul>
                     </li>
                     <li>

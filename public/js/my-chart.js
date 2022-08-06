@@ -2352,6 +2352,7 @@ if (tahun) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "dataRoute": () => (/* binding */ dataRoute),
+/* harmony export */   "getDataCongregations": () => (/* binding */ getDataCongregations),
 /* harmony export */   "getDataDistrict": () => (/* binding */ getDataDistrict),
 /* harmony export */   "getDataSchedule": () => (/* binding */ getDataSchedule),
 /* harmony export */   "getDataSubDistrict": () => (/* binding */ getDataSubDistrict),
@@ -2427,6 +2428,17 @@ var getDataSchedule = function getDataSchedule() {
   return axios__WEBPACK_IMPORTED_MODULE_0___default()({
     method: "GET",
     url: "/crud/schedule"
+  }).then(function (res) {
+    return res.data;
+  })["catch"](function (err) {
+    alert("Terjadi kesalahan pada server ".concat(err));
+  });
+};
+
+var getDataCongregations = function getDataCongregations() {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+    method: "GET",
+    url: "/crud/congregation"
   }).then(function (res) {
     return res.data;
   })["catch"](function (err) {

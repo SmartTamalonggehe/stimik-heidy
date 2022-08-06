@@ -1,5 +1,6 @@
 import "./district-select";
 import "./sub-district";
+import "./congregation";
 
 import { Select2 } from "select2";
 

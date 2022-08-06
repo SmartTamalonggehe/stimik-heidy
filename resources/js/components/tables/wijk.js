@@ -1,12 +1,16 @@
 import { Grid, html } from "gridjs";
 import { changeStyleTable } from "../side-bar";
-const congregation_table = document.getElementById("congregation-table");
-if (congregation_table) {
+
+const wijk_table = document.getElementById("wijk-table");
+if (wijk_table) {
     my_grid = new Grid({
         search: {
             enabled: true,
             selector: "#search",
         },
+        // sort column
+        sort: true,
+
         language: {
             search: {
                 placeholder: "🔍 ketik kata kunci...",
@@ -19,15 +23,11 @@ if (congregation_table) {
                 of: "dari",
                 results: "Data",
             },
-            // no records found
-            empty: {
-                message: "Tidak ada data yang ditemukan",
-            },
         },
-        sort: true,
         columns: [
             "No",
-            "Nama Jemaat",
+            "Jemaat",
+            "Wijk",
             {
                 name: "Aksi",
                 formatter: (cell) => html(`${cell}`),
@@ -35,18 +35,18 @@ if (congregation_table) {
         ],
         pagination: true,
         server: {
-            url: `/crud/congregation`,
+            url: `/crud/${route}`,
             then: (data) =>
-                data.map((card, index) => [
+                data.map((item, index) => [
                     index + 1,
-                    card.name,
+                    item.name,
+                    item.congregation.name,
                     `
-                    <button class="btn btn-outline-warning btn-sm btn-ubah" data-id="${card.id}">Edit</button>
-                    <button class="btn btn-outline-danger btn-sm my-2 btn-hapus" data-id="${card.id}">Hapus</button>
+                    <button class="btn btn-outline-warning btn-sm btn-ubah" data-id="${item.id}">Edit</button>
+                    <button class="btn btn-outline-danger btn-sm my-2 btn-hapus" data-id="${item.id}">Hapus</button>
                     `,
                 ]),
         },
-    }).render(congregation_table);
-
+    }).render(wijk_table);
     changeStyleTable();
 }

@@ -21,7 +21,7 @@ class CongregationController extends Controller
         ];
 
         $messages = [
-            'name.required' => 'Nama kabupaten harus diisi.',
+            'name.required' => 'Nama jemaat harus diisi.',
         ];
         $validator = Validator::make($request, $rules, $messages);
 
