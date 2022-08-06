@@ -2693,6 +2693,65 @@ mode.addEventListener("click", function () {
 
 /***/ }),
 
+/***/ "./resources/js/components/tables/congregation.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/tables/congregation.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var gridjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gridjs */ "./node_modules/gridjs/dist/gridjs.module.js");
+/* harmony import */ var _side_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../side-bar */ "./resources/js/components/side-bar.js");
+
+
+var congregation_table = document.getElementById("congregation-table");
+
+if (congregation_table) {
+  my_grid = new gridjs__WEBPACK_IMPORTED_MODULE_0__.Grid({
+    search: {
+      enabled: true,
+      selector: "#search"
+    },
+    language: {
+      search: {
+        placeholder: "🔍 ketik kata kunci..."
+      },
+      pagination: {
+        previous: "Sebelumnya",
+        next: "Berikutnya",
+        showing: "Menampilkan",
+        to: "sampai",
+        of: "dari",
+        results: "Data"
+      },
+      // no records found
+      empty: {
+        message: "Tidak ada data yang ditemukan"
+      }
+    },
+    sort: true,
+    columns: ["No", "Nama Kabupaten", {
+      name: "Aksi",
+      formatter: function formatter(cell) {
+        return (0,gridjs__WEBPACK_IMPORTED_MODULE_0__.html)("".concat(cell));
+      }
+    }],
+    pagination: true,
+    server: {
+      url: "/crud/congregation",
+      then: function then(data) {
+        return data.map(function (card, index) {
+          return [index + 1, card.name, "\n                    <button class=\"btn btn-outline-warning btn-sm btn-ubah\" data-id=\"".concat(card.id, "\">Edit</button>\n                    <button class=\"btn btn-outline-danger btn-sm my-2 btn-hapus\" data-id=\"").concat(card.id, "\">Hapus</button>\n                    ")];
+        });
+      }
+    }
+  }).render(congregation_table);
+  (0,_side_bar__WEBPACK_IMPORTED_MODULE_1__.changeStyleTable)();
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/tables/district.js":
 /*!****************************************************!*\
   !*** ./resources/js/components/tables/district.js ***!
@@ -44496,9 +44555,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_tables_tenant__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/tables/tenant */ "./resources/js/components/tables/tenant.js");
 /* harmony import */ var _components_tables_history_schedules__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/tables/history-schedules */ "./resources/js/components/tables/history-schedules.js");
 /* harmony import */ var _components_tables_laporan_schedule__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/tables/laporan-schedule */ "./resources/js/components/tables/laporan-schedule.js");
-/* harmony import */ var _components_select_datapicker__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/select/datapicker */ "./resources/js/components/select/datapicker.js");
-/* harmony import */ var _components_btn_cetak__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/btn/cetak */ "./resources/js/components/btn/cetak.js");
-/* harmony import */ var _components_btn_cetak__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_components_btn_cetak__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _components_tables_congregation__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/tables/congregation */ "./resources/js/components/tables/congregation.js");
+/* harmony import */ var _components_select_datapicker__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/select/datapicker */ "./resources/js/components/select/datapicker.js");
+/* harmony import */ var _components_btn_cetak__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/btn/cetak */ "./resources/js/components/btn/cetak.js");
+/* harmony import */ var _components_btn_cetak__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_components_btn_cetak__WEBPACK_IMPORTED_MODULE_16__);
 
 
 
@@ -44507,6 +44567,7 @@ __webpack_require__.r(__webpack_exports__);
  // card
 
  // table
+
 
 
 

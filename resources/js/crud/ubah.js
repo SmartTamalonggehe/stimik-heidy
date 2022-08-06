@@ -58,6 +58,10 @@ const formData = (data) => {
         $("#district-id").val(data.district_id).trigger("change.select2");
         document.getElementById("name").value = data.name;
     }
+    if (route == "congregation") {
+        document.getElementById("id-form").value = data.id;
+        document.getElementById("name").value = data.name;
+    }
     if (route == "gallery") {
         document.getElementById("id-form").value = data.id;
         document.getElementById("description").value = data.description;

@@ -18,6 +18,7 @@ import "./components/tables/schedules";
 import "./components/tables/tenant";
 import "./components/tables/history-schedules";
 import "./components/tables/laporan-schedule";
+import "./components/tables/congregation";
 
 // datepicker
 import "./components/select/datapicker";

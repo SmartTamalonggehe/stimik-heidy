@@ -11,7 +11,7 @@
                     <input type="hidden" name="id" class="inputReset" id="id-form">
                     <div class="row">
                         <div class="col-12 mb-2">
-                            <label for="name" class="form-label">Nama Kabupaten <span>*</span></label>
+                            <label for="name" class="form-label">Nama Jemaat <span>*</span></label>
                             <input type="text" class="form-control inputReset" id="name" name="name"
                                 required>
                         </div>

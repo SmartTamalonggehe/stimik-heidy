@@ -33,4 +33,8 @@ Route::prefix('admin')->middleware('auth', 'role:ADMIN')->group(function () {
     Route::get('schedule', function () {
         return view('admin.schedule.index');
     })->name('admin.schedule');
+    // congregation
+    Route::get('congregation', function () {
+        return view('admin.congregation.index');
+    })->name('admin.congregation');
 });
