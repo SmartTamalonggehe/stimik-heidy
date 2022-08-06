@@ -26,7 +26,7 @@ $title = 'Laporan Sewa Gedung';
             </div>
             <div class="col-12 col-md-2">
                 <div class="d-grid col-12 mx-auto">
-                    <button class="btn btn-primary" type="button">Cetak</button>
+                    <button class="btn btn-primary" id="btn-cetak-pdf" type="button">Cetak</button>
                 </div>
             </div>
         </div>

@@ -21,3 +21,6 @@ import "./components/tables/laporan-schedule";
 
 // datepicker
 import "./components/select/datapicker";
+
+// tombol cetak
+import "./components/btn/cetak";

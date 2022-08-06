@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CETAK\ScheduleCetakController;
 
 Route::prefix('ketua')->middleware('auth', 'role:KETUA')->group(function () {
     Route::get('/', function () {
@@ -14,4 +15,6 @@ Route::prefix('ketua')->middleware('auth', 'role:KETUA')->group(function () {
     Route::get('laporan', function () {
         return view('ketua.laporan.index');
     })->name('ketua.laporan');
+
+    Route::get('cetak/pdf/{id}', [ScheduleCetakController::class, 'pdf'])->name('ketua.cetak.pdf');
 });

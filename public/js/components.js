@@ -2156,6 +2156,29 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/components/btn/cetak.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/btn/cetak.js ***!
+  \**********************************************/
+/***/ (() => {
+
+// btn-cetak-pdf
+var btnCetakPdf = document.getElementById("btn-cetak-pdf");
+var yearSelect = document.getElementById("year");
+
+if (btnCetakPdf) {
+  var year = yearSelect.value;
+  yearSelect.addEventListener("change", function () {
+    year = yearSelect.value;
+  });
+  btnCetakPdf.addEventListener("click", function () {
+    // open new window
+    window.open("/ketua/cetak/pdf/".concat(year), "_blank");
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/card/tenant.js":
 /*!************************************************!*\
   !*** ./resources/js/components/card/tenant.js ***!
@@ -44474,6 +44497,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_tables_history_schedules__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/tables/history-schedules */ "./resources/js/components/tables/history-schedules.js");
 /* harmony import */ var _components_tables_laporan_schedule__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/tables/laporan-schedule */ "./resources/js/components/tables/laporan-schedule.js");
 /* harmony import */ var _components_select_datapicker__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/select/datapicker */ "./resources/js/components/select/datapicker.js");
+/* harmony import */ var _components_btn_cetak__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/btn/cetak */ "./resources/js/components/btn/cetak.js");
+/* harmony import */ var _components_btn_cetak__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_components_btn_cetak__WEBPACK_IMPORTED_MODULE_15__);
 
 
 
@@ -44491,6 +44516,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // datepicker
+
+ // tombol cetak
 
 
 })();
