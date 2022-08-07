@@ -39,8 +39,8 @@ if (wijk_table) {
             then: (data) =>
                 data.map((item, index) => [
                     index + 1,
-                    item.name,
                     item.congregation.name,
+                    item.name,
                     `
                     <button class="btn btn-outline-warning btn-sm btn-ubah" data-id="${item.id}">Edit</button>
                     <button class="btn btn-outline-danger btn-sm my-2 btn-hapus" data-id="${item.id}">Hapus</button>
