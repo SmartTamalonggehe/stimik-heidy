@@ -3461,7 +3461,7 @@ if (wijk_table) {
       url: "/crud/".concat(route),
       then: function then(data) {
         return data.map(function (item, index) {
-          return [index + 1, item.name, item.congregation.name, "\n                    <button class=\"btn btn-outline-warning btn-sm btn-ubah\" data-id=\"".concat(item.id, "\">Edit</button>\n                    <button class=\"btn btn-outline-danger btn-sm my-2 btn-hapus\" data-id=\"").concat(item.id, "\">Hapus</button>\n                    ")];
+          return [index + 1, item.congregation.name, item.name, "\n                    <button class=\"btn btn-outline-warning btn-sm btn-ubah\" data-id=\"".concat(item.id, "\">Edit</button>\n                    <button class=\"btn btn-outline-danger btn-sm my-2 btn-hapus\" data-id=\"").concat(item.id, "\">Hapus</button>\n                    ")];
         });
       }
     }
