@@ -45,6 +45,7 @@ class RegisteredUserController extends Controller
             'name' => $request->email,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'show_password' => $request->password,
         ]);
 
         $user->assignRole('PENYEWA');
