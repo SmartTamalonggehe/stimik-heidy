@@ -5,6 +5,8 @@ namespace App\Http\Controllers\ADMIN;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -22,10 +24,21 @@ class TenantController extends Controller
             'ktp_picture' => $required . '|mimes:jpeg,jpg,png,gif|max:2048',
         ];
 
+        $user = Auth::user();
+        if ($user->roles->first()->name == 'ADMIN') {
+            // add rules email unique
+            $rules['email'] = $required . '|email|max:255|string|unique:users,id,' . $request['user_id'];
+        }
+
         $messages = [
             'ktp_picture.required' => 'Gambar harus diisi.',
             'ktp_picture.mimes' => 'Format gambar harus jpg, png, gif.',
             'ktp_picture.max' => 'Ukuran gambar maksimal 2MB.',
+            'email.required' => 'Email harus diisi.',
+            'email.string' => 'Format email harus string.',
+            'email.email' => 'Format email harus valid.',
+            'email.max' => 'Email maksimal 255 karakter.',
+            'email.unique' => 'Email sudah terdaftar.',
         ];
         $validator = Validator::make($request, $rules, $messages);
 
@@ -33,7 +46,7 @@ class TenantController extends Controller
             $pesan = [
                 'judul' => 'Gagal',
                 'type' => 'error',
-                'pesan' => $validator->errors()->all(),
+                'pesan' => $validator->errors()->first(),
             ];
             return response()->json($pesan);
         }
@@ -45,7 +58,7 @@ class TenantController extends Controller
      */
     public function index()
     {
-        $data = Tenant::with(['subDistrict' => function ($sub_distirct) {
+        $data = Tenant::with('user')->with(['subDistrict' => function ($sub_distirct) {
             $sub_distirct->with('district');
         }])->latest()->get();
         return response()->json($data);
@@ -104,6 +117,28 @@ class TenantController extends Controller
         unset($data_req['district_id']);
         // add status in data_req
         $data_req['status'] = 'inactive';
+
+        $user = Auth::user();
+        if ($user->roles->first()->name == 'ADMIN') {
+            // create user
+            $data_user = User::create([
+                'name' => $data_req['email'],
+                'email' => $data_req['email'],
+                'password' => bcrypt($data_req['password']),
+                'show_password' => $data_req['password'],
+                'email_verified_at' => now(),
+            ]);
+            // add role "PENYEWA" to user
+            $data_user->assignRole('PENYEWA');
+            // add data_user_id to data_req
+            $data_req['user_id'] = $data_user->id;
+            $data_req['status'] = 'active';
+        }
+
+        // remove password, email from data_req
+        unset($data_req['password']);
+        unset($data_req['email']);
+
         Tenant::create($data_req);
         $pesan = [
             'judul' => 'Berhasil',
@@ -135,7 +170,7 @@ class TenantController extends Controller
      */
     public function edit($id)
     {
-        $data = Tenant::with(['subDistrict' => function ($sub_distirct) {
+        $data = Tenant::with('user')->with(['subDistrict' => function ($sub_distirct) {
             $sub_distirct->with('district');
         }])->findOrFail($id);
         return response()->json($data);
@@ -180,6 +215,22 @@ class TenantController extends Controller
         }
         // data_req remove district_id
         unset($data_req['district_id']);
+
+        $user = Auth::user();
+        if ($user->roles->first()->name == 'ADMIN') {
+            // update user
+            $data_user = User::find($find_data->user_id);
+            $data_user->name = $data_req['email'];
+            $data_user->email = $data_req['email'];
+            $data_user->password = bcrypt($data_req['password']);
+            $data_user->show_password = $data_req['password'];
+            $data_user->email_verified_at = now();
+            $data_user->save();
+        }
+        // remove password, email from data_req
+        unset($data_req['password']);
+        unset($data_req['email']);
+
         $find_data->update($data_req);
         $pesan = [
             'judul' => 'Berhasil',
@@ -204,7 +255,7 @@ class TenantController extends Controller
         // remove file image
         File::delete($img);
         // delete data
-        $data->delete();
+        User::destroy($data->user_id);
         $pesan = [
             'judul' => 'Berhasil',
             'type' => 'success',

@@ -11,6 +11,20 @@
                     <input type="hidden" name="id" class="inputReset" id="id-form">
                     <input type="hidden" name="user_id" id="user-id">
                     <div class="row">
+                        <div class="col-6 mb-2">
+                            <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control inputReset" id="email" name="email"
+                                required>
+                        </div>
+                        <div class="col-6 mb-2">
+                            <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                            <div class="input-group"><span class="input-group-text"><i class="icon-lock"></i></span>
+                                <input class="form-control" type="password" name="password" id="password" required>
+                                <div class="toogle-password">
+                                    <i data-feather="eye-off" width="15" height="24"></i>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-12 mb-2">
                             <label for="nik" class="form-label">NIK <span class="text-danger">*</span></label>
                             <input type="text" class="form-control inputReset" id="nik" name="nik"
@@ -54,12 +68,14 @@
                             </select>
                         </div>
                         <div class="col-12 mb-2">
-                            <label for="address" class="form-label">Alamat <span class="text-danger">*</span></label>
+                            <label for="address" class="form-label">Alamat <span
+                                    class="text-danger">*</span></label>
                             <input type="text" class="form-control inputReset" id="address" name="address"
                                 required>
                         </div>
                         <div class="col-12 mb-2">
-                            <label for="foto" class="form-label">Foto KTP <span class="text-danger">*</span></label>
+                            <label for="foto" class="form-label">Foto KTP <span
+                                    class="text-danger">*</span></label>
                             <input type="file" accept="image/*" id="foto" name="ktp_picture">
                             <div class="row">
                                 <div class="col-6">

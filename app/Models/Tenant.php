@@ -19,4 +19,8 @@ class Tenant extends Model
     {
         return $this->hasMany(Schedule::class, 'tenant_id');
     }
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

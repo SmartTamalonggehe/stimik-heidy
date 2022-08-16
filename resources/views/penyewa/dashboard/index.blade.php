@@ -5,7 +5,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h5>Selamat datang {{ auth()->user()->name }} ...</h5>
+                <h5>Selamat datang ...</h5>
             </div>
         </div>
     </div>

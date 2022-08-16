@@ -10,7 +10,7 @@ $title = 'Penyewa';
 @section('judul', $title)
 
 @section('btn-tambah')
-    {{-- <button class="btn btn-primary" id="btn-tambah">Tambah Data</button> --}}
+    <button class="btn btn-primary" id="btn-tambah">Tambah Data</button>
 @endsection
 
 @section('content')
@@ -22,11 +22,11 @@ $title = 'Penyewa';
                 <div id="{{ $folder }}-table"></div>
             </div>
         </div>
-        {{-- @include("admin.$folder.form") --}}
+        @include("admin.$folder.form")
     </div>
 @endsection
 
 @section('scripts')
     <script src="{{ mix('js/my-crud.js') }}"></script>
-    {{-- <script src="{{ asset('assets/js/select2.full.js') }}"></script> --}}
+    <script src="{{ asset('assets/js/select2.full.js') }}"></script>
 @endsection

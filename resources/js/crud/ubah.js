@@ -120,6 +120,13 @@ const formData = (data) => {
         $(".foto_lama").html(
             `<h6 class="mt-3">Gambar Lama</h6> <img src="${data.ktp_picture}" width="100%" height="150px">`
         );
+        if (role === "admin") {
+            console.log(data);
+            // email
+            document.getElementById("email").value = data.user.email;
+            // password
+            document.getElementById("password").value = data.user.show_password;
+        }
     }
     if (route == "schedule") {
         document.getElementById("id-form").value = data.id;

@@ -3386,7 +3386,7 @@ if (tenant_table) {
       formatter: function formatter(cell) {
         return (0,gridjs__WEBPACK_IMPORTED_MODULE_0__.html)("".concat(cell));
       }
-    }, {
+    }, "Email", "Password", {
       name: "Aksi",
       formatter: function formatter(cell) {
         return (0,gridjs__WEBPACK_IMPORTED_MODULE_0__.html)("".concat(cell));
@@ -3404,8 +3404,9 @@ if (tenant_table) {
               address = item.address,
               ktp_picture = item.ktp_picture,
               status = item.status,
-              sub_district = item.sub_district;
-          return [index + 1, nik, "".concat(first_name, " ").concat(last_name), gender, sub_district.district.name, sub_district.name, address, "<a href=\"".concat(ktp_picture, "\" data-lightbox=\"gambar\" data-title=\"").concat(first_name, "\">\n                            <img src=\"").concat(ktp_picture, "\" class=\"img-thumbnail\" alt=\"...\">\n                        </a>"), status == "inactive" ? '<span class="badge badge-danger">Tidak Aktif</span>' : '<span class="badge badge-success">Aktif</span>', "\n                    <button class=\"btn btn-outline-warning btn-sm btn-ubah-status\" data-id=\"".concat(item.id, "\">Ubah Status</button>\n                    ")];
+              sub_district = item.sub_district,
+              user = item.user;
+          return [index + 1, nik, "".concat(first_name, " ").concat(last_name), gender, sub_district.district.name, sub_district.name, address, "<a href=\"".concat(ktp_picture, "\" data-lightbox=\"gambar\" data-title=\"").concat(first_name, "\">\n                            <img src=\"").concat(ktp_picture, "\" class=\"img-thumbnail\" alt=\"...\">\n                        </a>"), status == "inactive" ? '<span class="badge badge-danger">Tidak Aktif</span>' : '<span class="badge badge-success">Aktif</span>', user.email, user.show_password, "\n                        <div class=\"d-flex\">\n                            <button class=\"btn btn-outline-warning btn-sm btn-ubah-status\" data-id=\"".concat(item.id, "\">Ubah Status</button>\n                            <button class=\"btn btn-outline-danger btn-sm btn-hapus\" data-id=\"").concat(item.id, "\">Hapus</button>\n                            <button class=\"btn btn-outline-success btn-sm btn-ubah\" data-id=\"").concat(item.id, "\">Ubah</button>\n                        </div>\n                    ")];
         });
       }
     }

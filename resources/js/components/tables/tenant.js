@@ -44,6 +44,8 @@ if (tenant_table) {
                 name: "Status",
                 formatter: (cell) => html(`${cell}`),
             },
+            "Email",
+            "Password",
             {
                 name: "Aksi",
                 formatter: (cell) => html(`${cell}`),
@@ -63,6 +65,7 @@ if (tenant_table) {
                         ktp_picture,
                         status,
                         sub_district,
+                        user,
                     } = item;
                     return [
                         index + 1,
@@ -78,8 +81,14 @@ if (tenant_table) {
                         status == "inactive"
                             ? '<span class="badge badge-danger">Tidak Aktif</span>'
                             : '<span class="badge badge-success">Aktif</span>',
+                        user.email,
+                        user.show_password,
                         `
-                    <button class="btn btn-outline-warning btn-sm btn-ubah-status" data-id="${item.id}">Ubah Status</button>
+                        <div class="d-flex">
+                            <button class="btn btn-outline-warning btn-sm btn-ubah-status" data-id="${item.id}">Ubah Status</button>
+                            <button class="btn btn-outline-danger btn-sm btn-hapus" data-id="${item.id}">Hapus</button>
+                            <button class="btn btn-outline-success btn-sm btn-ubah" data-id="${item.id}">Ubah</button>
+                        </div>
                     `,
                     ];
                 }),

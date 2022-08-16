@@ -37,13 +37,12 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'name' => $request->email,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
@@ -55,9 +54,11 @@ class RegisteredUserController extends Controller
             'token' => sha1(time()),
         ]);
 
-        Mail::to($user->email)->send(new VerifikasiMail($verify->token));
+        // Mail::to($user->email)->send(new VerifikasiMail($verify->token));
 
         Auth::login($user);
+
+        return redirect()->route('cekLogin');
 
         return redirect()->route('register')->with('success', 'Selamat! Anda telah terdaftar. Silahkan cek email anda untuk melakukan verifikasi.');
     }
