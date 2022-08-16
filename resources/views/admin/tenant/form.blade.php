@@ -33,7 +33,8 @@
                         <div class="col-12 col-lg-6 mb-2">
                             <label for="first_name" class="form-label">Nama Depan <span
                                     class="text-danger">*</span></label>
-                            <input type="text" class="form-control inputReset" id="first_name" name="first_name">
+                            <input type="text" class="form-control inputReset" id="first_name" name="first_name"
+                                required>
                         </div>
                         <div class="col-12 col-lg-6 mb-2">
                             <label for="last_name" class="form-label">Nama Belakang</label>

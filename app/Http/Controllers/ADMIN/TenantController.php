@@ -22,12 +22,16 @@ class TenantController extends Controller
         }
         $rules = [
             'ktp_picture' => $required . '|mimes:jpeg,jpg,png,gif|max:2048',
+            'sub_district_id' => 'required',
+            'first_name' => 'required',
         ];
 
         $user = Auth::user();
         if ($user->roles->first()->name == 'ADMIN') {
             // add rules email unique
             $rules['email'] = $required . '|email|max:255|string|unique:users,id,' . $request['user_id'];
+            // add password rules
+            $rules['password'] = 'required';
         }
 
         $messages = [
@@ -39,6 +43,8 @@ class TenantController extends Controller
             'email.email' => 'Format email harus valid.',
             'email.max' => 'Email maksimal 255 karakter.',
             'email.unique' => 'Email sudah terdaftar.',
+            'sub_district_id.required' => 'Kecamatan harus diisi.',
+            'first_name.required' => 'Nama harus diisi.',
         ];
         $validator = Validator::make($request, $rules, $messages);
 
