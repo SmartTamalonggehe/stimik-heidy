@@ -5,7 +5,11 @@
         </a>
 
         <a href="{{ route('penyewa.dashboard') }}">
-            <h6 class="mt-3 f-14 f-w-600">Penyewa</h6>
+            <h6 class="mt-3 f-14 f-w-600">
+                @if (Auth::user()->tenant)
+                    {{ Auth::user()->tenant->first_name }} {{ Auth::user()->tenant->last_name }}
+                @endif
+            </h6>
         </a>
     </div>
     <nav>
