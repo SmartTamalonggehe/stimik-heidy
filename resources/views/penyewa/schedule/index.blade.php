@@ -23,6 +23,20 @@ $user = auth()->user()->tenant;
     <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
+                <div class="mb-3">
+                    <ul>
+                        <li>
+                            No. Rekening yang dapat digunakan untuk pembayaran sewa gedung: <br />
+                            <ul className="my-ul">
+                                <li>
+                                    <b>Bank Mandiri</b> <br />
+                                    No. Rekening: <b>1540016698601</b> <br />
+                                    Atas Nama: <b>Amelia</b>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
                 <p>Riwayat pesanan gedung {{ $user->first_name }} {{ $user->last_name }}</p>
                 <div id="history-{{ $folder }}-table" data-id="{{ $user->id }}"></div>
             </div>

@@ -8,20 +8,6 @@
                 <div>
                     <h3>Selamat datang ...</h3>
                 </div>
-                <div class="mt-2">
-                    <ul>
-                        <li>
-                            No. Rekening yang dapat digunakan untuk pembayaran sewa: <br />
-                            <ul className="my-ul">
-                                <li>
-                                    <b>Bank Mandiri</b> <br />
-                                    No. Rekening: <b>1540016698601</b> <br />
-                                    Atas Nama: <b>Amelia</b>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
